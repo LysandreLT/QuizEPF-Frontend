@@ -5,6 +5,7 @@ import {LogInComponent} from "./log-in/log-in.component";
 import {RegisterComponent} from "./register/register.component";
 import {ResultsComponent} from "./results/results.component";
 
+
 const routes: Routes = [
   { path: "question", component: QuizQuestionComponent },
   { path: "results", component: ResultsComponent },
