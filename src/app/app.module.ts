@@ -22,15 +22,16 @@ import { UserListComponent } from './user-list/user-list.component';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    QuizQuestionComponent,
-    ResultsComponent,
-    LogInComponent,
-    RegisterComponent,
-    AdminHomeComponent,
-    UserListComponent
-  ],
+    declarations: [
+        AppComponent,
+        QuizQuestionComponent,
+        ResultsComponent,
+        LogInComponent,
+        RegisterComponent,
+        AdminHomeComponent,
+        UserListComponent,
+        NavbarComponent
+    ],
   imports: [
         BrowserModule,
         BrowserAnimationsModule,
