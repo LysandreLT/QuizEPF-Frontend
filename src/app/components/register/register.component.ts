@@ -1,8 +1,8 @@
 import { Input, Component, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import {UserService} from "../services/UserService";
+import {UserService} from "../../services/UserService";
 import {Observable} from "rxjs";
-import {User} from "../models/User";
+import {User} from "../../models/User";
 
 @Component({
   selector: 'register',

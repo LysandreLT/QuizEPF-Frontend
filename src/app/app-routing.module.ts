@@ -1,9 +1,9 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
-import {QuizQuestionComponent} from "./quiz-question/quiz-question.component";
-import {LogInComponent} from "./log-in/log-in.component";
-import {RegisterComponent} from "./register/register.component";
-import {ResultsComponent} from "./results/results.component";
+import {QuizQuestionComponent} from "./components/quiz-question/quiz-question.component";
+import {LogInComponent} from "./components/log-in/log-in.component";
+import {RegisterComponent} from "./components/register/register.component";
+import {ResultsComponent} from "./components/results/results.component";
 
 
 const routes: Routes = [
