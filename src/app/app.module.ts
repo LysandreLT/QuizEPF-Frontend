@@ -19,6 +19,7 @@ import { AdminHomeComponent } from './admin-home/admin-home.component';
 import {LeaderboardComponent} from "./leaderboard/leaderboard.component";
 import {NavbarComponent} from "./navbar/navbar.component";
 import { UserListComponent } from './user-list/user-list.component';
+import { CreateQuizComponent } from './create-quiz/create-quiz.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { UserListComponent } from './user-list/user-list.component';
         RegisterComponent,
         AdminHomeComponent,
         UserListComponent,
-        NavbarComponent
+        NavbarComponent,
+        CreateQuizComponent
     ],
   imports: [
         BrowserModule,
