@@ -9,22 +9,34 @@ import { AppRoutingModule } from './app-routing.module';
 import {MatCardModule} from "@angular/material/card";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
+import {MatButtonModule} from "@angular/material/button";
+import { ResultsComponent } from './results/results.component';
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatListModule} from "@angular/material/list";
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    QuizQuestionComponent
+    QuizQuestionComponent,
+    ResultsComponent,
+    LeaderboardComponent,
+    NavbarComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatSlideToggleModule,
-    AppRoutingModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MatSlideToggleModule,
+        AppRoutingModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatProgressBarModule,
+        MatListModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
