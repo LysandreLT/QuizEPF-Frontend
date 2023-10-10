@@ -20,6 +20,7 @@ import {LeaderboardComponent} from "./leaderboard/leaderboard.component";
 import {NavbarComponent} from "./navbar/navbar.component";
 import { UserListComponent } from './user-list/user-list.component';
 import { CreateQuizComponent } from './create-quiz/create-quiz.component';
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -46,9 +47,11 @@ import { CreateQuizComponent } from './create-quiz/create-quiz.component';
         MatProgressBarModule,
         MatListModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        HttpClientModule
     ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
