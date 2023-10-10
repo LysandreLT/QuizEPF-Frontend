@@ -17,6 +17,7 @@ import { LogInComponent } from './log-in/log-in.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
+import { UserListComponent } from './user-list/user-list.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { AdminHomeComponent } from './admin-home/admin-home.component';
     ResultsComponent,
     LogInComponent,
     RegisterComponent,
-    AdminHomeComponent
+    AdminHomeComponent,
+    UserListComponent
   ],
   imports: [
         BrowserModule,
