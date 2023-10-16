@@ -21,6 +21,8 @@ import {NavbarComponent} from "./components/navbar/navbar.component";
 import { UserListComponent } from './components/user-list/user-list.component';
 import { CreateQuizComponent } from './components/create-quiz/create-quiz.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { MatExpansionModule } from '@angular/material/expansion';
+import {MatCheckbox, MatCheckboxModule} from "@angular/material/checkbox";
 
 
 @NgModule({
@@ -41,6 +43,8 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
         MatSlideToggleModule,
         AppRoutingModule,
         MatCardModule,
+        MatCheckboxModule,
+        MatExpansionModule,
         MatFormFieldModule,
         MatInputModule,
         MatButtonModule,

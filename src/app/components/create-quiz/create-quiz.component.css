@@ -1,0 +1,9 @@
+.active-button {
+    background-color: #007bff; /* Change to your desired color */
+    color: white;
+}
+.checkbox-input-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
