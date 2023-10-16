@@ -12,9 +12,17 @@ export class UserService {
 
     private studentsUrl = "http://localhost:8080/users"
 
-    findAll(): Observable<User[]> {
+
+/*    findAll(): Observable<User[]> {
         return this.http.get<User[]>(this.studentsUrl)
-    }
+    }*/
+
+    /*OnLogin(input : any):void{
+        this.http.post(this.loginUrl,{
+            login: input.login,
+            password: input.password
+        })
+    }*/
 
 
 }
