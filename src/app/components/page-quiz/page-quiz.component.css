@@ -1,0 +1,14 @@
+.quiz-card {
+    margin: auto;
+    width: 50%;
+    overflow: hidden;
+    margin-top: 50px;
+    background-color: lightblue;
+}
+.user-card {
+    margin: auto;
+    width: 50%;
+    overflow: hidden;
+}
+
+

@@ -24,8 +24,11 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { MatExpansionModule } from '@angular/material/expansion';
 import {MatCheckbox, MatCheckboxModule} from "@angular/material/checkbox";
 import { MatTabsModule } from '@angular/material/tabs';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import {MatIconModule} from "@angular/material/icon"; // Import NoopAnimationsModule
+import {MatIconModule} from "@angular/material/icon";
+import { TabsComponent } from './components/tabs/tabs.component';
+import { PageQuizComponent } from './components/page-quiz/page-quiz.component';
+import { StartPageComponent } from './components/start-page/start-page.component';
+import { UserHomeComponent } from './components/user-home/user-home.component'; // Import NoopAnimationsModule
 
 
 
@@ -39,7 +42,11 @@ import {MatIconModule} from "@angular/material/icon"; // Import NoopAnimationsMo
         AdminHomeComponent,
         UserListComponent,
         NavbarComponent,
-        CreateQuizComponent
+        CreateQuizComponent,
+        TabsComponent,
+        PageQuizComponent,
+        StartPageComponent,
+        UserHomeComponent
     ],
   imports: [
         BrowserModule,
@@ -54,7 +61,6 @@ import {MatIconModule} from "@angular/material/icon"; // Import NoopAnimationsMo
         MatButtonModule,
         MatProgressBarModule,
         MatListModule,
-        NoopAnimationsModule,
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,

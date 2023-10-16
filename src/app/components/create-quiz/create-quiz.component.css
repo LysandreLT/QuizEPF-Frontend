@@ -1,9 +1,22 @@
 .active-button {
-    background-color: #007bff; /* Change to your desired color */
+    background-color: #007bff;
     color: white;
 }
-.checkbox-input-container {
+
+.create{
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
-    gap: 10px;
+    padding-top: 20px;
+}
+
+.outer{
+    margin-top: 50px;
+    padding-bottom: 100px;
+}
+
+mat-accordion{
+    width: 70%;
 }

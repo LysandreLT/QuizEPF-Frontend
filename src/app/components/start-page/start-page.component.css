@@ -1,0 +1,13 @@
+.header{
+    background-color: lightslategrey;
+    height: 170px;
+    padding: 20px;
+}
+.heading{
+    font-family: 'Catamaran', sans-serif;
+    color: whitesmoke;
+    font-size: 100px;
+    text-align: center;
+    margin-top: 65px;
+    padding-bottom: 50px;
+}

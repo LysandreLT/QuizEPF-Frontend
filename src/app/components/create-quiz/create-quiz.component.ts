@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 
+
 @Component({
-  selector: 'create-quiz.component',
+  selector: 'create-quiz',
   templateUrl: './create-quiz.component.html',
   styleUrls: ['./create-quiz.component.css']
 })
