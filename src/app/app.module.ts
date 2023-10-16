@@ -23,6 +23,10 @@ import { CreateQuizComponent } from './components/create-quiz/create-quiz.compon
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { MatExpansionModule } from '@angular/material/expansion';
 import {MatCheckbox, MatCheckboxModule} from "@angular/material/checkbox";
+import { MatTabsModule } from '@angular/material/tabs';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {MatIconModule} from "@angular/material/icon"; // Import NoopAnimationsModule
+
 
 
 @NgModule({
@@ -50,9 +54,12 @@ import {MatCheckbox, MatCheckboxModule} from "@angular/material/checkbox";
         MatButtonModule,
         MatProgressBarModule,
         MatListModule,
+        NoopAnimationsModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpClientModule
+        HttpClientModule,
+        MatTabsModule,
+        MatIconModule,
     ],
   providers: [],
   bootstrap: [AppComponent]

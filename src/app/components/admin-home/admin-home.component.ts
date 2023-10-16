@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AdminHomeComponent {
 
+  modifyCard() {
+    console.log('Modify card clicked');
+  }
+
+  deleteCard() {
+    console.log('Delete card clicked');
+  }
+
 }
