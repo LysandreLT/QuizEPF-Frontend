@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import {QuizUser} from "../../models/QuizUser";
+import {QuizUserService} from "../../services/QuizUserService";
+import {User} from "../../models/User";
+import {UserService} from "../../services/UserService";
 
 @Component({
   selector: 'app-admin-home',
@@ -7,12 +11,29 @@ import { Component } from '@angular/core';
 })
 export class AdminHomeComponent {
 
-  modifyCard() {
-    console.log('Modify card clicked');
+  users:User[]
+
+  constructor(private userService:UserService) {
+    this.userService.findAll().subscribe((users) =>
+    {
+      this.users = users
+    });
   }
 
-  deleteCard() {
-    console.log('Delete card clicked');
+  modifyQuiz(id: bigint) {
+
+  }
+
+  deleteQuiz(id: bigint) {
+
+  }
+
+  modifyUser(id: bigint) {
+
+  }
+
+  deleteUser(id: bigint) {
+    this.userService.deleteUser(id)
   }
 
 }

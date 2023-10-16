@@ -9,28 +9,28 @@
                 <mat-card-title>Nom de Quiz</mat-card-title>
             </mat-card-header>
             <mat-card-actions align="end">
-                <button mat-icon-button (click)="modifyCard()">
+                <button mat-icon-button>
                     <mat-icon>edit</mat-icon>
                 </button>
-                <button mat-icon-button (click)="deleteCard()">
+                <button mat-icon-button>
                     <mat-icon>delete</mat-icon>
                 </button>
             </mat-card-actions>
         </mat-card>
     </mat-tab>
     <mat-tab label="Users">
-        <mat-card class="user-card">
+        <mat-card *ngFor="let user of users" class="user-card">
             <mat-card-header>
-                <mat-card-title>Nom de User</mat-card-title>
+                <mat-card-title>{{user.firstName}}</mat-card-title>
+                <mat-card-actions align="end">
+                    <button mat-icon-button (click)="modifyUser(user.id)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="deleteUser(user.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-card-actions>
             </mat-card-header>
-            <mat-card-actions align="end">
-                <button mat-icon-button (click)="modifyCard()">
-                    <mat-icon>edit</mat-icon>
-                </button>
-                <button mat-icon-button (click)="deleteCard()">
-                    <mat-icon>delete</mat-icon>
-                </button>
-            </mat-card-actions>
         </mat-card>
     </mat-tab>
 </mat-tab-group>

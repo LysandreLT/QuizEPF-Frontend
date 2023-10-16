@@ -1,5 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {map, Observable} from "rxjs";
+import {Component} from '@angular/core';
 import {QuizUser} from "../../models/QuizUser";
 import {QuizUserService} from "../../services/QuizUserService"
 
@@ -18,8 +17,5 @@ export class LeaderboardComponent {
         this.quizUserService.findAll().subscribe((users) => {
           this.quizUsers = users.sort((a,b) => b.score - a.score)
         })
-
-
     }
-
 }
