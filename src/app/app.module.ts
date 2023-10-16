@@ -22,6 +22,8 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { CreateQuizComponent } from './components/create-quiz/create-quiz.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { LeaderboardUserComponent } from './leaderboard-user/leaderboard-user.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import {MatCheckbox, MatCheckboxModule} from "@angular/material/checkbox";
 
 
 @NgModule({
@@ -44,6 +46,8 @@ import { LeaderboardUserComponent } from './leaderboard-user/leaderboard-user.co
         MatSlideToggleModule,
         AppRoutingModule,
         MatCardModule,
+        MatCheckboxModule,
+        MatExpansionModule,
         MatFormFieldModule,
         MatInputModule,
         MatButtonModule,
