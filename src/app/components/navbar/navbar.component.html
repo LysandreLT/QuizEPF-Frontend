@@ -1,7 +1,10 @@
 <nav>
     <div>
-        <img src="../../../assets/logo-epf-rouge.png" routerLink="" alt="Logo EPF">
+        <img class="logo" src="../../../assets/logo-epf-rouge.png" routerLink="" alt="Logo EPF">
         <mat-nav-list>
+            <a routerLinkActive="active" routerLink="/home">Home</a>
+            <a routerLinkActive="active" routerLink="/login">Login</a>
+            <!--<a (click)="logout()">Logout</a>-->
         </mat-nav-list>
     </div>
 </nav>

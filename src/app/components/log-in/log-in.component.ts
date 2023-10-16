@@ -1,104 +1,57 @@
-import { Input, Component, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Component, Output, EventEmitter } from '@angular/core';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {UserService} from "../../services/UserService";
+import {AuthentificationService} from "../../services/authentification.service";
+import {HttpClient} from "@angular/common/http";
+import {catchError, of} from "rxjs";
 
 @Component({
   selector: 'login',
-  template: `
-      <mat-card>
-            <mat-card-title>Login</mat-card-title>
-      <mat-card-content>
-        <form [formGroup]="form" (ngSubmit)="submit()">
-          <p>
-            <mat-form-field>
-              <input type="text" matInput placeholder="Username" formControlName="username">
-            </mat-form-field>
-          </p>
-
-          <p>
-            <mat-form-field>
-              <input type="password" matInput placeholder="Password" formControlName="password">
-            </mat-form-field>
-          </p>
-
-          <p *ngIf="error" class="error">
-            {{ error }}
-          </p>
-
-          <div class="button-container">
-
-            <div class="buttonInscrire">
-              <button type="submit" mat-button><a href = "register">S'inscrire</a> </button>
-            </div>
-
-            <div class="buttonLogin">
-                <button type="submit" mat-button>Login</button>
-            </div>
-            
-          </div>
-
-        </form>
-      </mat-card-content>
-    </mat-card>
-  `,
-  styles: [
-    `
-      :host {
-        display: flex;
-        justify-content: center;
-        margin: 100px 0px;
-      }
-
-      .mat-form-field {
-        width: 100%;
-        min-width: 300px;
-      }
-
-      mat-card-title,
-      mat-card-content {
-        display: flex;
-        justify-content: center;
-      }
-
-      .error {
-        padding: 16px;
-        width: 300px;
-        color: white;
-        background-color: red;
-      }
-
-      .button-container {
-        display: flex;
-        justify-content: space-between;
-      }
-      
-      .buttonInscrire {
-        display: flex;
-        flex: 1;
-        justify-content: flex-start;
-      }
-
-      .buttonLogin {
-        display: flex;
-        flex: 1;
-        justify-content: flex-end;
-      }
-    `,
-  ],
-
+  templateUrl: 'log-in.component.html',
+  styleUrls:[
+      'log-in.component.css'
+  ]
 })
 export class LogInComponent {
-  form: FormGroup = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
-  });
+    //@Output() onSubmitLoginEvent = new EventEmitter();
 
-  submit() {
-    if (this.form.valid) {
-      this.submitEM.emit(this.form.value);
+    private loginUrl: string = "http://localhost:8080/login"
+    login: string = "";
+    password: string = "";
+    constructor(private http: HttpClient, private authservice:AuthentificationService) {
     }
-  }
-  @Input() error: string | null;
 
-  @Output() submitEM = new EventEmitter();
+    form: FormGroup = new FormGroup({
+        username: new FormControl(this.login,[Validators.required]),
+        password: new FormControl(this.password,[Validators.required])
+    });
+
+    submit() {
+        if (this.form.valid) {
+            this.onSubmitLogin();
+        }
+    }
+    onSubmitLogin(): void {
+        //this.onSubmitLoginEvent.emit({"login": this.login, "password": this.password});
+        // Prepare the data to be sent in the POST request.
+        const data = {
+            login: this.login,
+            password: this.password
+        };
+
+        // Send the HTTP POST request and subscribe to it to initiate the request.
+        this.http.post(this.loginUrl, data)
+            .pipe(catchError((error) => {
+                // Handle errors here, e.g., display an error message.
+                this.authservice.setAuthToken(null);
+                console.error('Login error', error);
+                return of(error); // You may want to return an observable here if needed
+            }))
+            .subscribe((response: any) => {
+            // Handle the successful response here, e.g., set the authentication token and perform other actions.
+            this.authservice.setAuthToken(response.token);
+            console.log('Login success', response);
+        });
+    }
 }
 
