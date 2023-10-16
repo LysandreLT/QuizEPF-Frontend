@@ -21,6 +21,7 @@ import {NavbarComponent} from "./components/navbar/navbar.component";
 import { UserListComponent } from './components/user-list/user-list.component';
 import { CreateQuizComponent } from './components/create-quiz/create-quiz.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { LeaderboardUserComponent } from './leaderboard-user/leaderboard-user.component';
 
 
 @NgModule({
@@ -28,12 +29,14 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
         AppComponent,
         QuizQuestionComponent,
         ResultsComponent,
+        LeaderboardComponent,
         LogInComponent,
         RegisterComponent,
         AdminHomeComponent,
         UserListComponent,
         NavbarComponent,
-        CreateQuizComponent
+        CreateQuizComponent,
+        LeaderboardUserComponent
     ],
   imports: [
         BrowserModule,

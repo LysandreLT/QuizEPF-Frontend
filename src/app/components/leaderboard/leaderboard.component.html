@@ -1,1 +1,5 @@
-<p>leaderboard works!</p>
+<div *ngFor="let entry of quizUsers | async" class="leaderboard-entry">
+    {{ entry.user.firstName }} - {{ entry.score }}
+</div>
+
+<a mat-raised-button href="">Accueil</a>
