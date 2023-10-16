@@ -5,5 +5,5 @@ export interface QuizUser {
     id?: bigint,
     user: User,
     quiz: Quiz,
-    score: BigInt
+    score: number
 }

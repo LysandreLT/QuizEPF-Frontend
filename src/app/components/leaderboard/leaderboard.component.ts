@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
 import {QuizUser} from "../../models/QuizUser";
 import {QuizUserService} from "../../services/QuizUserService"
 
@@ -11,11 +11,15 @@ import {QuizUserService} from "../../services/QuizUserService"
 
 export class LeaderboardComponent {
 
-  quizUsers:Observable<QuizUser[]>
+  quizUsers:QuizUser[]
 
     constructor(private quizUserService:QuizUserService) {
 
-        this.quizUsers = this.quizUserService.findAll()
+        this.quizUserService.findAll().subscribe((users) => {
+          this.quizUsers = users.sort((a,b) => b.score - a.score)
+        })
+
 
     }
+
 }
