@@ -12,15 +12,11 @@ import {UserHomeComponent} from "./components/user-home/user-home.component";
 
 
 const routes: Routes = [
-  { path: "question", component: QuizQuestionComponent },
+  { path: "question", component: QuizQuestionComponent},
   { path: "results", component: ResultsComponent },
   { path: "login", component: LogInComponent },
   { path: "register", component: RegisterComponent },
-  { path: "createQuiz", component: CreateQuizComponent },
-  { path: "adminHome", component: AdminHomeComponent },
-  { path: "tabs", component: TabsComponent },
-  { path: "home", component: StartPageComponent },
-  { path: "userhome", component: UserHomeComponent },
+  { path: "home", component: UserHomeComponent },
   {path: "",  component: StartPageComponent, pathMatch: "full"},
 ]
 
