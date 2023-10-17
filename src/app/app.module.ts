@@ -18,7 +18,6 @@ import { RegisterComponent } from './components/register/register.component';
 import { AdminHomeComponent } from './components/admin-home/admin-home.component';
 import {LeaderboardComponent} from "./components/leaderboard/leaderboard.component";
 import {NavbarComponent} from "./components/navbar/navbar.component";
-import { UserListComponent } from './components/user-list/user-list.component';
 import { CreateQuizComponent } from './components/create-quiz/create-quiz.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { LeaderboardUserComponent } from './leaderboard-user/leaderboard-user.component';
@@ -42,7 +41,6 @@ import { UserHomeComponent } from './components/user-home/user-home.component'; 
         LogInComponent,
         RegisterComponent,
         AdminHomeComponent,
-        UserListComponent,
         NavbarComponent,
         CreateQuizComponent,
         LeaderboardUserComponent,

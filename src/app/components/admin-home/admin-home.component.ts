@@ -12,12 +12,15 @@ import {UserService} from "../../services/UserService";
 export class AdminHomeComponent {
 
   users:User[]
+  updateId: bigint
 
   constructor(private userService:UserService) {
     this.userService.findAll().subscribe((users) =>
     {
       this.users = users
     });
+
+
   }
 
   modifyQuiz(id: bigint) {
@@ -28,12 +31,28 @@ export class AdminHomeComponent {
 
   }
 
-  modifyUser(id: bigint) {
+  updateUser(user) {
+    this.userService.updateUser(user).subscribe()
+    this.updateId = null
+  }
 
+  onCancelUpdate(){
+    this.updateId=null
+  }
+
+  onUpdateUser(id: bigint) {
+    this.updateId = id
   }
 
   deleteUser(id: bigint) {
-    this.userService.deleteUser(id)
-  }
+    var isDeleted = confirm("Do you really want to delete this records?")
 
+    if (isDeleted)
+    {
+      this.userService.deleteUser(id).subscribe(() => {
+        this.userService.findAll().subscribe(
+            (users)=> this.users = users)
+      })
+    }
+  }
 }
