@@ -1,9 +1,11 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import {FormGroup, FormControl, Validators} from '@angular/forms';
-import {UserService} from "../../services/UserService";
-import {AuthentificationService} from "../../services/authentification.service";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Component} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AuthentificationService} from "../../services/auth/authentification.service";
 import {catchError, of} from "rxjs";
+import {AuthenticationRequest} from "../../models/AuthentificationRequest";
+import {Router} from "@angular/router";
+import {NotificationComponent} from "../notification/notification.component";
+import {NotificationType} from "../../models/enums/NotificationType";
 
 @Component({
   selector: 'login',
@@ -15,17 +17,13 @@ import {catchError, of} from "rxjs";
 export class LogInComponent {
     //@Output() onSubmitLoginEvent = new EventEmitter();
 
-    private loginUrl: string = "http://localhost:8080/login"
-    data = {
-        login: "",
-        password: ""
-    }
-    constructor(private http: HttpClient, private authservice:AuthentificationService) {
+    authRequest: AuthenticationRequest = {};
+    constructor(private authservice : AuthentificationService, private router : Router) {
     }
 
     form: FormGroup = new FormGroup({
-        username: new FormControl(this.data.login,[Validators.required]),
-        password: new FormControl(this.data.password,[Validators.required])
+        username: new FormControl('',[Validators.required]),
+        password: new FormControl('',[Validators.required])
     });
 
     submit() {
@@ -34,32 +32,22 @@ export class LogInComponent {
         }
     }
     onSubmitLogin(): void {
-        //this.onSubmitLoginEvent.emit({"login": this.login, "password": this.password});
-        // Prepare the data to be sent in the POST request.
 
-        this.data.login=this.form.get("username").value,
-        this.data.password= this.form.get("password").value
+        this.authRequest.email=this.form.get("username").value,
+        this.authRequest.password= this.form.get("password").value
 
-        let headers:any = {};
-
-        if (this.authservice.getAuthToken() !== null){
-            headers = new HttpHeaders({
-                'Content-Type': 'application/json',
-                'Authorization': "Bearer " + this.authservice.getAuthToken()
-            });
-        }
-        // Send the HTTP POST request and subscribe to it to initiate the request.
-        this.http.post(this.loginUrl, this.data,{ headers })
+        this.authservice.login(this.authRequest)
             .pipe(catchError((error) => {
-                // Handle errors here, e.g., display an error message.
-                this.authservice.setAuthToken(null);
+
                 console.error('Login error', error);
-                return of(error); // You may want to return an observable here if needed
+
+                return of(error);
             }))
-            .subscribe((response: any) => {
-            // Handle the successful response here, e.g., set the authentication token and perform other actions.
+            .subscribe((response) => {
+
             this.authservice.setAuthToken(response.token);
-            console.log('Login success', response);
+            //console.log('Login success', response.password);
+            //this.router.navigate(['/home']);
         });
     }
 }

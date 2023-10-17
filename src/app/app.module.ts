@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { QuizQuestionComponent } from './components/quiz-question/quiz-question.component';
@@ -31,7 +31,11 @@ import { UserHomeComponent } from './components/user-home/user-home.component';
 import { ProfilPageComponent } from './components/profil-page/profil-page.component';
 import { UserLeaderboardComponent } from './components/user-leaderboard/user-leaderboard.component';
 import {MatTableModule} from "@angular/material/table";
-import {MatPaginatorModule} from "@angular/material/paginator"; // Import NoopAnimationsModule
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatDialogModule} from "@angular/material/dialog";
+import {GlobalErrorHandler} from "./services/notifications/global-error-handler.service";
+import { NotificationComponent } from './components/notification/notification.component';
+import {MessagesModule} from "primeng/messages";
 
 
 
@@ -51,9 +55,10 @@ import {MatPaginatorModule} from "@angular/material/paginator"; // Import NoopAn
         StartPageComponent,
         UserHomeComponent,
         ProfilPageComponent,
-        UserLeaderboardComponent
+        UserLeaderboardComponent,
+        NotificationComponent,
     ],
-  imports: [
+    imports: [
         BrowserModule,
         BrowserAnimationsModule,
         MatSlideToggleModule,
@@ -72,9 +77,14 @@ import {MatPaginatorModule} from "@angular/material/paginator"; // Import NoopAn
         MatTabsModule,
         MatIconModule,
         MatTableModule,
-        MatPaginatorModule
+        MatPaginatorModule,
+        MatDialogModule,
+        MessagesModule
     ],
-  providers: [],
+  providers: [{
+      provide:ErrorHandler,
+      useClass:GlobalErrorHandler
+  }],
   bootstrap: [AppComponent]
 })
 

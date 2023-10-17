@@ -4,8 +4,10 @@ import {UserService} from "../../services/UserService";
 import {catchError, Observable, of} from "rxjs";
 import {User} from "../../models/User";
 import {HttpClient} from "@angular/common/http";
-import {AuthentificationService} from "../../services/authentification.service";
+import {AuthentificationService} from "../../services/auth/authentification.service";
 import {Router} from "@angular/router";
+import {RegisterRequest} from "../../models/RegisterRequest";
+import {AuthenticationResponse} from "../../models/AuthentificationResponse";
 
 @Component({
   selector: 'register',
@@ -15,25 +17,18 @@ import {Router} from "@angular/router";
 })
 export class RegisterComponent {
 
-/*
-  users:Observable<User[]>*/
 
-  private registerUrl: string = "http://localhost:8080/register"
-  user = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: ''
-  };
+  registerRequest: RegisterRequest = {};
+
 
   form: FormGroup = new FormGroup({
-    firstName: new FormControl(this.user.firstName,[Validators.required]),
-    lastName: new FormControl(this.user.lastName,[Validators.required]),
-    email: new FormControl(this.user.email,[Validators.required]),
-    password: new FormControl(this.user.password,[Validators.required])
+    firstName: new FormControl('',[Validators.required]),
+    lastName: new FormControl('',[Validators.required]),
+    email: new FormControl('',[Validators.required]),
+    password: new FormControl('',[Validators.required])
   });
 
-  constructor(private http: HttpClient, private authservice:AuthentificationService,private router: Router  ) {}
+  constructor(private authservice:AuthentificationService,private router: Router  ) {}
 
   onSubmit() {
     if (this.form.valid) {
@@ -42,32 +37,20 @@ export class RegisterComponent {
   }
 
   onRegister():void {
-    this.user.firstName = this.form.get("firstName").value
-    this.user.lastName = this.form.get("lastName").value
-    this.user.email = this.form.get("email").value
-    this.user.password = this.form.get("password").value
+    this.registerRequest.firstName = this.form.get("firstName").value
+    this.registerRequest.lastName = this.form.get("lastName").value
+    this.registerRequest.email = this.form.get("email").value
+    this.registerRequest.password = this.form.get("password").value
 
+    this.authservice.register(this.registerRequest)
+        .subscribe((response: any) => {
+          this.authservice.setAuthToken(response.password);
 
-    console.log(this.user)
-
-    this.http.post(this.registerUrl, this.user)
-      .pipe(catchError((error) => {
-        // Handle errors here, e.g., display an error message.
-        this.authservice.setAuthToken(null);
-        console.error('Register error', error);
-        return of(error); // You may want to return an observable here if needed
-      }))
-      .subscribe((response: any) => {
-        this.authservice.setAuthToken(response.token);
-
-        console.log('Register success', response);
-        this.router.navigate([''])
-      });
-
-
+          console.log('Register success', response);
+          //this.router.navigate(['/login'])
+        },(error)=>{
+          this.authservice.setAuthToken(null);
+          console.error('Register error', error);
+        });
   }
-
-/*  @Input() error: string | null;
-
-  @Output() submitEM = new EventEmitter();*/
 }

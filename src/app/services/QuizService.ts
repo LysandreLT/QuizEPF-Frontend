@@ -5,55 +5,59 @@ import {Quiz} from "../models/Quiz";
 import {User} from "../models/User";
 import {QuizQuestion} from "../models/QuizQuestion";
 import {QuizAnswer} from "../models/QuizAnswer";
+import {AuthentificationService} from "./auth/authentification.service";
 
 @Injectable({
     providedIn: "root",
 })
 export class QuizService {
-    constructor(private http: HttpClient) {
+    constructor(private autService:AuthentificationService) {
     }
 
-    private quizUrl = "http://localhost:8080/quizzes"
-
+    private quizUrl = "quizzes"
 
     findAllQuizzes(): Observable<Quiz[]> {
-        return this.http.get<Quiz[]>(this.quizUrl)
+        return this.autService.getData(this.quizUrl)
     }
 
     deleteQuiz(id: bigint): void {
-        this.http.delete(`${this.quizUrl}/${id}`)
+        this.autService.deleteData(`${this.quizUrl}/${id}`)
     }
 
     updateQuiz(quiz:Quiz):Observable<Quiz>{
-        return this.http.post<Quiz>(`${this.quizUrl}/${quiz.id}`, quiz)
+        return this.autService.postData(`${this.quizUrl}/${quiz.id}`, quiz)
+    }
+
+    addQuiz(quiz:Quiz):Observable<Quiz>{
+        return this.autService.postData(this.quizUrl,quiz)
     }
 
     // QuizQuestions
 
     findAllQuizQuestions(): Observable<QuizQuestion[]> {
-        return this.http.get<QuizQuestion[]>(`${this.quizUrl}/questions`)
+        return this.autService.getData(`${this.quizUrl}/questions`)
     }
 
     deleteQuizQuestion(id: bigint): void {
-        this.http.delete(`${this.quizUrl}/questions/${id}`)
+        this.autService.deleteData(`${this.quizUrl}/questions/${id}`)
     }
 
     updateQuizQuestion(quiz:QuizQuestion):Observable<QuizQuestion>{
-        return this.http.post<QuizQuestion>(`${this.quizUrl}/questions/${quiz.id}`, quiz)
+        return this.autService.postData(`${this.quizUrl}/questions/${quiz.id}`, quiz)
     }
 
     // Quiz answer
 
     findAllQuizAnswers(): Observable<QuizAnswer[]> {
-        return this.http.get<QuizAnswer[]>(`${this.quizUrl}/answers`)
+        return this.autService.getData(`${this.quizUrl}/answers`)
     }
 
     deleteQuizAnswer(id: bigint): void {
-        this.http.delete(`${this.quizUrl}/answers/${id}`)
+        this.autService.deleteData(`${this.quizUrl}/answers/${id}`)
     }
 
     updateQuizAnswer(quizAnswer:QuizAnswer):Observable<QuizAnswer>{
-        return this.http.post<QuizAnswer>(`${this.quizUrl}/answers/${quizAnswer.id}`, quizAnswer)
+        return this.autService.postData(`${this.quizUrl}/answers/${quizAnswer.id}`, quizAnswer)
     }
 
 

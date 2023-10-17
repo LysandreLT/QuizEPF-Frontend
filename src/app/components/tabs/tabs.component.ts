@@ -1,4 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import {AuthentificationService} from "../../services/auth/authentification.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-tabs',
@@ -7,4 +9,12 @@ import { Component, ViewEncapsulation } from '@angular/core';
 })
 export class TabsComponent {
 
+  constructor(private authService: AuthentificationService, private router:Router) {
+
+  }
+
+  onLogout(){
+    this.authService.logout();
+    this.router.navigate(['']);
+  }
 }
