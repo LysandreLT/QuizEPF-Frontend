@@ -29,7 +29,10 @@ import { TabsComponent } from './components/tabs/tabs.component';
 import { PageQuizComponent } from './components/page-quiz/page-quiz.component';
 import { StartPageComponent } from './components/start-page/start-page.component';
 import { UserHomeComponent } from './components/user-home/user-home.component';
-import { ProfilPageComponent } from './components/profil-page/profil-page.component'; // Import NoopAnimationsModule
+import { ProfilPageComponent } from './components/profil-page/profil-page.component';
+import { UserLeaderboardComponent } from './components/user-leaderboard/user-leaderboard.component';
+import {MatTableModule} from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator"; // Import NoopAnimationsModule
 
 
 
@@ -48,7 +51,8 @@ import { ProfilPageComponent } from './components/profil-page/profil-page.compon
         PageQuizComponent,
         StartPageComponent,
         UserHomeComponent,
-        ProfilPageComponent
+        ProfilPageComponent,
+        UserLeaderboardComponent
     ],
   imports: [
         BrowserModule,
@@ -68,6 +72,8 @@ import { ProfilPageComponent } from './components/profil-page/profil-page.compon
         HttpClientModule,
         MatTabsModule,
         MatIconModule,
+        MatTableModule,
+        MatPaginatorModule
     ],
   providers: [],
   bootstrap: [AppComponent]

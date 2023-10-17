@@ -5,3 +5,11 @@ h1{
     font-size: 50px;
     color: darkgrey;
 }
+
+.quiz-card {
+    margin: auto;
+    margin-top: 20px;
+    width: 50%;
+    overflow: hidden;
+    background-color: lightblue;
+}
