@@ -20,7 +20,6 @@ import {LeaderboardComponent} from "./components/leaderboard/leaderboard.compone
 import {NavbarComponent} from "./components/navbar/navbar.component";
 import { CreateQuizComponent } from './components/create-quiz/create-quiz.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
-import { LeaderboardUserComponent } from './components/leaderboard-user/leaderboard-user.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import {MatCheckbox, MatCheckboxModule} from "@angular/material/checkbox";
 import { MatTabsModule } from '@angular/material/tabs';
@@ -47,7 +46,6 @@ import {MatPaginatorModule} from "@angular/material/paginator"; // Import NoopAn
         AdminHomeComponent,
         NavbarComponent,
         CreateQuizComponent,
-        LeaderboardUserComponent,
         TabsComponent,
         PageQuizComponent,
         StartPageComponent,
