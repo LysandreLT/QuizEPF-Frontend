@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {Observable} from "rxjs";
-import {HttpClient} from "@angular/common/http";
+import {catchError, map, Observable, throwError} from "rxjs";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +8,7 @@ import {HttpClient} from "@angular/common/http";
 export class AuthentificationService {
 
   private baseUrl: string = "http://localhost:8080"
+  public registerUrl: string = `${this.baseUrl}/register`
   constructor(private http: HttpClient) {
 
   }
@@ -23,6 +24,29 @@ export class AuthentificationService {
       window.localStorage.removeItem("auth_token");
     }
   }
+
+  postData(url:string,data:any){
+    let headers:any = {};
+
+    if (this.getAuthToken() !== null){
+      headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': "Bearer " + this.getAuthToken()
+      });
+    }
+    return this.http.post(this.baseUrl + url, data, { headers }).pipe(
+        map((response: any) => {
+          // Handle and return the response data
+          return response;
+        }),
+        catchError((error: any) => {
+          // Handle and forward the error
+          console.error('POST request error:', error);
+          return throwError(error);
+        })
+    );
+  }
+
   request(method, url, data) {
     let headers = {};
 

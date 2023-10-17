@@ -2,6 +2,6 @@ import {User} from "./User";
 
 export interface Quiz {
     id?: bigint
-    nom: String,
+    name: String,
     user: User
 }

@@ -2,7 +2,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {UserService} from "../../services/UserService";
 import {AuthentificationService} from "../../services/authentification.service";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, of} from "rxjs";
 
 @Component({
@@ -16,14 +16,16 @@ export class LogInComponent {
     //@Output() onSubmitLoginEvent = new EventEmitter();
 
     private loginUrl: string = "http://localhost:8080/login"
-    login: string = "";
-    password: string = "";
+    data = {
+        login: "",
+        password: ""
+    }
     constructor(private http: HttpClient, private authservice:AuthentificationService) {
     }
 
     form: FormGroup = new FormGroup({
-        username: new FormControl(this.login,[Validators.required]),
-        password: new FormControl(this.password,[Validators.required])
+        username: new FormControl(this.data.login,[Validators.required]),
+        password: new FormControl(this.data.password,[Validators.required])
     });
 
     submit() {
@@ -34,13 +36,20 @@ export class LogInComponent {
     onSubmitLogin(): void {
         //this.onSubmitLoginEvent.emit({"login": this.login, "password": this.password});
         // Prepare the data to be sent in the POST request.
-        const data = {
-            login: this.login,
-            password: this.password
-        };
 
+        this.data.login=this.form.get("username").value,
+        this.data.password= this.form.get("password").value
+
+        let headers:any = {};
+
+        if (this.authservice.getAuthToken() !== null){
+            headers = new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + this.authservice.getAuthToken()
+            });
+        }
         // Send the HTTP POST request and subscribe to it to initiate the request.
-        this.http.post(this.loginUrl, data)
+        this.http.post(this.loginUrl, this.data,{ headers })
             .pipe(catchError((error) => {
                 // Handle errors here, e.g., display an error message.
                 this.authservice.setAuthToken(null);
