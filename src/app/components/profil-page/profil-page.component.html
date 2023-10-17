@@ -1,0 +1,21 @@
+<h1>Name of User</h1>
+<mat-tab-group>
+    <mat-tab label="Mes classements">
+        <app-user-leaderboard></app-user-leaderboard>
+    </mat-tab>
+    <mat-tab label="Mes propres quiz">
+        <mat-card class="quiz-card">
+            <mat-card-header>
+                <mat-card-title>Nom de Quiz</mat-card-title>
+            </mat-card-header>
+            <mat-card-actions align="end">
+                <button mat-icon-button (click)="modifyCard()">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button (click)="deleteCard()">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </mat-tab>
+</mat-tab-group>
