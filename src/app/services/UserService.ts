@@ -17,8 +17,12 @@ export class UserService {
         return this.http.get<User[]>(this.userUrl)
     }
 
-    deleteUser(id: bigint): void {
-        this.http.delete(`${this.userUrl}/${id}`)
+    updateUser(user:User):Observable<User>{
+        return this.http.post<User>(`${this.userUrl}/${user.id}`, user)
+    }
+
+    deleteUser(id: bigint): Observable<Object> {
+        return this.http.delete(`${this.userUrl}/${id}`)
     }
 
 

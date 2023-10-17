@@ -28,7 +28,11 @@ import {MatIconModule} from "@angular/material/icon";
 import { TabsComponent } from './components/tabs/tabs.component';
 import { PageQuizComponent } from './components/page-quiz/page-quiz.component';
 import { StartPageComponent } from './components/start-page/start-page.component';
-import { UserHomeComponent } from './components/user-home/user-home.component'; // Import NoopAnimationsModule
+import { UserHomeComponent } from './components/user-home/user-home.component';
+import { ProfilPageComponent } from './components/profil-page/profil-page.component';
+import { UserLeaderboardComponent } from './components/user-leaderboard/user-leaderboard.component';
+import {MatTableModule} from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator"; // Import NoopAnimationsModule
 
 
 
@@ -47,7 +51,9 @@ import { UserHomeComponent } from './components/user-home/user-home.component'; 
         TabsComponent,
         PageQuizComponent,
         StartPageComponent,
-        UserHomeComponent
+        UserHomeComponent,
+        ProfilPageComponent,
+        UserLeaderboardComponent
     ],
   imports: [
         BrowserModule,
@@ -67,6 +73,8 @@ import { UserHomeComponent } from './components/user-home/user-home.component'; 
         HttpClientModule,
         MatTabsModule,
         MatIconModule,
+        MatTableModule,
+        MatPaginatorModule
     ],
   providers: [],
   bootstrap: [AppComponent]
