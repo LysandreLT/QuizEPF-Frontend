@@ -1,0 +1,27 @@
+.quiz-card {
+    margin: auto;
+    width: 50%;
+    overflow: hidden;
+}
+.user-card {
+    margin: auto;
+    width: 50%;
+    overflow: hidden;
+}
+.rounded-button {
+    border-radius: 50%;
+    background-color: #3498db;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Optional: Add a smooth transition effect */
+}
+
+.rounded-button:hover {
+    background-color: #2980b9; /* Change the background color on hover (optional) */
+}
+
+.center-button-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+}
+

@@ -1,0 +1,22 @@
+.active-button {
+    background-color: #007bff;
+    color: white;
+}
+
+.create{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.outer{
+    margin-top: 50px;
+    padding-bottom: 100px;
+}
+
+mat-accordion{
+    width: 70%;
+}

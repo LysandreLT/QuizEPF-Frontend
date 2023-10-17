@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-admin-home',
-  templateUrl: './admin-home.component.html',
-  styleUrls: ['./admin-home.component.css']
+  selector: 'app-page-quiz',
+  templateUrl: './page-quiz.component.html',
+  styleUrls: ['./page-quiz.component.css']
 })
-export class AdminHomeComponent {
+export class PageQuizComponent {
 
   modifyCard() {
     console.log('Modify card clicked');

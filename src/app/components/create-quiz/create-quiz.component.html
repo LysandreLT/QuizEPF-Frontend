@@ -1,1 +1,65 @@
-<p>create-quiz works!</p>
+<div class="outer">
+<div class="create">
+<mat-form-field>
+    <input matInput placeholder="nom de Quiz">
+</mat-form-field>
+    </div>
+<div class="create">
+<mat-accordion>
+    <mat-expansion-panel *ngFor="let panel of panels; let i = index">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Question {{ i + 1 }}
+            </mat-panel-title>
+            <button mat-button color="warn" (click)="deletePanel(i)">Delete</button>
+        </mat-expansion-panel-header>
+        <div>
+            <div>
+            <mat-form-field>
+                <input matInput placeholder="Question">
+            </mat-form-field>
+            </div>
+            <button
+                    mat-button
+                    [ngClass]="{'active-button': panel.showContent === 1}"
+                    (click)="toggleContent(panel, 1)"
+            >
+                Choix
+            </button>
+            <button
+                    mat-button
+                    [ngClass]="{'active-button': panel.showContent === 2}"
+                    (click)="toggleContent(panel, 2)"
+            >
+                Réponse libre
+            </button>
+        </div>
+
+        <div *ngIf="panel.showContent === 1">
+            <!-- Content for Button 1 -->
+            <div *ngFor="let checkBox of panel.checkBoxes; let j = index">
+                <div class="checkbox-input-container">
+                    <mat-checkbox [(ngModel)]="checkBox.checked"></mat-checkbox>
+                    <mat-form-field>
+                        <input matInput placeholder="Réponse" [(ngModel)]="checkBox.text">
+                    </mat-form-field>
+                    <button mat-button color="warn" (click)="deleteCheckBox(panel, j)">Delete</button>
+                </div>
+            </div>
+            <button mat-button (click)="addCheckBox(panel)">Ajouter Réponse</button>
+        </div>
+
+        <div *ngIf="panel.showContent === 2">
+            <!-- Content for Button 2 -->
+            <mat-form-field>
+                <input matInput placeholder="bonne réponse">
+            </mat-form-field>
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>
+</div>
+<div class="create">
+<button mat-raised-button (click)="addPanel()">Ajouter Question</button>
+    <button mat-raised-button color="primary">Sauvegarder</button>
+</div>
+</div>

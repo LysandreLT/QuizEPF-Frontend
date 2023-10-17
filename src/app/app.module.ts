@@ -21,6 +21,16 @@ import {NavbarComponent} from "./components/navbar/navbar.component";
 import { UserListComponent } from './components/user-list/user-list.component';
 import { CreateQuizComponent } from './components/create-quiz/create-quiz.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { MatExpansionModule } from '@angular/material/expansion';
+import {MatCheckbox, MatCheckboxModule} from "@angular/material/checkbox";
+import { MatTabsModule } from '@angular/material/tabs';
+import {MatIconModule} from "@angular/material/icon";
+import { TabsComponent } from './components/tabs/tabs.component';
+import { PageQuizComponent } from './components/page-quiz/page-quiz.component';
+import { StartPageComponent } from './components/start-page/start-page.component';
+import { UserHomeComponent } from './components/user-home/user-home.component';
+import { ProfilPageComponent } from './components/profil-page/profil-page.component'; // Import NoopAnimationsModule
+
 
 
 @NgModule({
@@ -33,7 +43,12 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
         AdminHomeComponent,
         UserListComponent,
         NavbarComponent,
-        CreateQuizComponent
+        CreateQuizComponent,
+        TabsComponent,
+        PageQuizComponent,
+        StartPageComponent,
+        UserHomeComponent,
+        ProfilPageComponent
     ],
   imports: [
         BrowserModule,
@@ -41,6 +56,8 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
         MatSlideToggleModule,
         AppRoutingModule,
         MatCardModule,
+        MatCheckboxModule,
+        MatExpansionModule,
         MatFormFieldModule,
         MatInputModule,
         MatButtonModule,
@@ -48,7 +65,9 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
         MatListModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpClientModule
+        HttpClientModule,
+        MatTabsModule,
+        MatIconModule,
     ],
   providers: [],
   bootstrap: [AppComponent]
