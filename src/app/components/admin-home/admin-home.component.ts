@@ -17,6 +17,7 @@ export class AdminHomeComponent {
   constructor(private userService:UserService) {
     this.userService.findAll().subscribe((users) =>
     {
+      console.log(users)
       this.users = users
     });
 

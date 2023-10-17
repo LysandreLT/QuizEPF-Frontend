@@ -22,14 +22,14 @@ export class RegisterComponent {
   user = {
     firstName: '',
     lastName: '',
-    login: '',
+    email: '',
     password: ''
   };
 
   form: FormGroup = new FormGroup({
     firstName: new FormControl(this.user.firstName,[Validators.required]),
     lastName: new FormControl(this.user.lastName,[Validators.required]),
-    email: new FormControl(this.user.login,[Validators.required]),
+    email: new FormControl(this.user.email,[Validators.required]),
     password: new FormControl(this.user.password,[Validators.required])
   });
 
@@ -44,7 +44,7 @@ export class RegisterComponent {
   onRegister():void {
     this.user.firstName = this.form.get("firstName").value
     this.user.lastName = this.form.get("lastName").value
-    this.user.login = this.form.get("email").value
+    this.user.email = this.form.get("email").value
     this.user.password = this.form.get("password").value
 
 
