@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 
 interface QuizData {
   ranking: number;
@@ -22,6 +22,8 @@ export class UserLeaderboardComponent implements OnInit {
     { ranking: 3, quizname: 'Quiz 3' },
     { ranking: 4, quizname: 'Quiz 4' },
     { ranking: 5, quizname: 'Quiz 5' },
+    { ranking: 6, quizname: 'Quiz 6' },
+    { ranking: 7, quizname: 'Quiz 7' },
   ];
 
   dataSource = new MatTableDataSource<QuizData>(this.data);
@@ -29,6 +31,11 @@ export class UserLeaderboardComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
+    this.dataSource.data = this.data;
   }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator
+  }
+
 }
