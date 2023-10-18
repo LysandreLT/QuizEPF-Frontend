@@ -38,16 +38,17 @@ export class LogInComponent {
 
         this.authservice.login(this.authRequest)
             .pipe(catchError((error) => {
-
+                this.authservice.setAuthToken(null);
                 console.error('Login error', error);
 
                 return of(error);
             }))
             .subscribe((response) => {
 
-            this.authservice.setAuthToken(response.token);
-            //console.log('Login success', response.password);
-            //this.router.navigate(['/home']);
+            this.authservice.setAuthToken(response.password);
+
+            console.log('Login success', response.password);
+            this.router.navigate(['/home']);
         });
     }
 }

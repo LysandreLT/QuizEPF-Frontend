@@ -43,14 +43,17 @@ export class RegisterComponent {
     this.registerRequest.password = this.form.get("password").value
 
     this.authservice.register(this.registerRequest)
+        .pipe(catchError((error) => {
+      this.authservice.setAuthToken(null);
+      console.error('Register error', error);
+
+      return of(error);
+    }))
         .subscribe((response: any) => {
           this.authservice.setAuthToken(response.password);
 
           console.log('Register success', response);
-          //this.router.navigate(['/login'])
-        },(error)=>{
-          this.authservice.setAuthToken(null);
-          console.error('Register error', error);
+          this.router.navigate(['/login'])
         });
   }
 }

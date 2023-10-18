@@ -8,7 +8,7 @@ import {AuthentificationService} from "./auth/authentification.service";
     providedIn: "root",
 })
 export class UserService {
-    constructor(private http: HttpClient, private authService:AuthentificationService) {
+    constructor( private authService:AuthentificationService) {
     }
 
     private userUrl = "users"
