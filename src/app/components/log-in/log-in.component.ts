@@ -4,7 +4,7 @@ import {AuthentificationService} from "../../services/auth/authentification.serv
 import {catchError, of} from "rxjs";
 import {AuthenticationRequest} from "../../models/AuthentificationRequest";
 import {Router} from "@angular/router";
-import {NotificationComponent} from "../notification/notification.component";
+import {NotificationService} from "../../services/notifications/notification.service";
 import {NotificationType} from "../../models/enums/NotificationType";
 
 @Component({
@@ -12,13 +12,12 @@ import {NotificationType} from "../../models/enums/NotificationType";
   templateUrl: 'log-in.component.html',
   styleUrls:[
       'log-in.component.css'
-  ]
+  ],
 })
 export class LogInComponent {
-    //@Output() onSubmitLoginEvent = new EventEmitter();
 
     authRequest: AuthenticationRequest = {};
-    constructor(private authservice : AuthentificationService, private router : Router) {
+    constructor(private authservice : AuthentificationService, private router : Router,private notification:NotificationService) {
     }
 
     form: FormGroup = new FormGroup({
@@ -40,7 +39,7 @@ export class LogInComponent {
             .pipe(catchError((error) => {
                 this.authservice.setAuthToken(null);
                 console.error('Login error', error);
-
+                this.notification.add(NotificationType.Error, error.message,error.status, false);
                 return of(error);
             }))
             .subscribe((response) => {
@@ -48,8 +47,12 @@ export class LogInComponent {
             this.authservice.setAuthToken(response.password);
 
             console.log('Login success', response.password);
-            this.router.navigate(['/home']);
+            //this.router.navigate(['/home']);
         });
     }
+    popUpServces() {
+        this.notification.add(NotificationType.Success, 'Via MessageService','', false);
+    }
+
 }
 

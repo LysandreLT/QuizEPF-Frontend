@@ -34,8 +34,9 @@ import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatDialogModule} from "@angular/material/dialog";
 import {GlobalErrorHandler} from "./services/notifications/global-error-handler.service";
-import { NotificationComponent } from './components/notification/notification.component';
 import {MessagesModule} from "primeng/messages";
+import {ToastModule} from "primeng/toast";
+import {MessageService} from "primeng/api";
 
 
 
@@ -56,7 +57,6 @@ import {MessagesModule} from "primeng/messages";
         UserHomeComponent,
         ProfilPageComponent,
         UserLeaderboardComponent,
-        NotificationComponent,
     ],
     imports: [
         BrowserModule,
@@ -79,12 +79,14 @@ import {MessagesModule} from "primeng/messages";
         MatTableModule,
         MatPaginatorModule,
         MatDialogModule,
-        MessagesModule
+        MessagesModule,
+        ToastModule
     ],
   providers: [{
       provide:ErrorHandler,
       useClass:GlobalErrorHandler
-  }],
+  },
+      MessageService],
   bootstrap: [AppComponent]
 })
 

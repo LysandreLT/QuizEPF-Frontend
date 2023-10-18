@@ -2,8 +2,6 @@ import {ErrorHandler, Injectable} from '@angular/core';
 import {NotificationType} from "../../models/enums/NotificationType";
 import {HttpErrorResponse} from "@angular/common/http";
 import {AuthentificationService} from "../auth/authentification.service";
-import {NotificationComponent} from "../../components/notification/notification.component";
-import {MessageService} from "primeng/api";
 
 @Injectable()
 export class GlobalErrorHandler implements ErrorHandler{
