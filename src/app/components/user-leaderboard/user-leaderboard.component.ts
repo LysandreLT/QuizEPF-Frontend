@@ -1,11 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-
-interface QuizData {
-  ranking: number;
-  quizname: string;
-}
+import {Ranking} from "../../models/Ranking";
+import {QuizUserService} from "../../services/QuizUserService";
 
 @Component({
   selector: 'app-user-leaderboard',
@@ -13,25 +10,24 @@ interface QuizData {
   styleUrls: ['./user-leaderboard.component.css']
 })
 export class UserLeaderboardComponent implements OnInit {
-  displayedColumns: string[] = ['ranking', 'quizname'];
+  displayedColumns: string[] = ['ranking', 'quiz_name', 'score'];
+  rankings:Ranking[] = []
+  dataSource:MatTableDataSource<Ranking> = new MatTableDataSource<Ranking>(this.rankings);
 
 
-  data: QuizData[] = [
-    { ranking: 1, quizname: 'Quiz 1' },
-    { ranking: 2, quizname: 'Quiz 2' },
-    { ranking: 3, quizname: 'Quiz 3' },
-    { ranking: 4, quizname: 'Quiz 4' },
-    { ranking: 5, quizname: 'Quiz 5' },
-    { ranking: 6, quizname: 'Quiz 6' },
-    { ranking: 7, quizname: 'Quiz 7' },
-  ];
 
-  dataSource = new MatTableDataSource<QuizData>(this.data);
+  constructor(private quizUserService:QuizUserService) {
+
+  }
+
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
-    this.dataSource.data = this.data;
+    this.quizUserService.findRanking(1).subscribe((data)=>{
+      this.rankings = data;
+      this.dataSource.data = data
+    })
   }
 
   ngAfterViewInit() {

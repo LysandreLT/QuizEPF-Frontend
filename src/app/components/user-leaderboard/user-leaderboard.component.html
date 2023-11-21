@@ -6,9 +6,14 @@
             <td mat-cell *matCellDef="let element"> {{ element.ranking }} </td>
         </ng-container>
 
-        <ng-container matColumnDef="quizname">
+        <ng-container matColumnDef="quiz_name">
             <th mat-header-cell *matHeaderCellDef> Quiz Name </th>
-            <td mat-cell *matCellDef="let element"> {{ element.quizname }} </td>
+            <td mat-cell *matCellDef="let element"> {{ element.quiz_name }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="score">
+            <th mat-header-cell *matHeaderCellDef> Score </th>
+            <td mat-cell *matCellDef="let element"> {{ element.score }} </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
