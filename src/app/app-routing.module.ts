@@ -18,13 +18,13 @@ import {GlobalErrorHandler} from "./services/notifications/global-error-handler.
 const routes: Routes = [
   { path: "login", component: LogInComponent },
   { path: "register", component: RegisterComponent},
-  { path: "question", component: QuizQuestionComponent,canActivate: [authGuard]},
-  { path: "results", component: ResultsComponent,canActivate: [authGuard] },
-  { path : "leaderboard", component : LeaderboardComponent,canActivate: [authGuard]},
-  { path: "createQuiz", component: CreateQuizComponent,canActivate: [authGuard] },
-  { path: "adminHome", component: AdminHomeComponent ,canActivate: [authGuard]},
-  { path: "home", component: UserHomeComponent, canActivate: [authGuard] },
-  {path: "",  component: StartPageComponent, pathMatch: "full",canActivate: [authGuard]},
+  { path: "question", component: QuizQuestionComponent,},
+  { path: "results", component: ResultsComponent, },
+  { path : "leaderboard", component : LeaderboardComponent,},
+  { path: "createQuiz", component: CreateQuizComponent, },
+  { path: "adminHome", component: AdminHomeComponent ,},
+  { path: "home", component: UserHomeComponent,  },
+  {path: "",  component: StartPageComponent, pathMatch: "full",},
 ]
 
 @NgModule({

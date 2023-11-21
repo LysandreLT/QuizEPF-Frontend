@@ -1,13 +1,11 @@
 import { Input, Component, Output, EventEmitter } from '@angular/core';
 import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
-import {UserService} from "../../services/UserService";
 import {catchError, Observable, of} from "rxjs";
-import {User} from "../../models/User";
-import {HttpClient} from "@angular/common/http";
 import {AuthentificationService} from "../../services/auth/authentification.service";
 import {Router} from "@angular/router";
 import {RegisterRequest} from "../../models/RegisterRequest";
-import {AuthenticationResponse} from "../../models/AuthentificationResponse";
+import {NotificationType} from "../../models/enums/NotificationType";
+import {NotificationService} from "../../services/notifications/notification.service";
 
 @Component({
   selector: 'register',
@@ -28,7 +26,7 @@ export class RegisterComponent {
     password: new FormControl('',[Validators.required])
   });
 
-  constructor(private authservice:AuthentificationService,private router: Router  ) {}
+  constructor(private authservice:AuthentificationService,private router: Router , private notification:NotificationService ) {}
 
   onSubmit() {
     if (this.form.valid) {
@@ -44,16 +42,20 @@ export class RegisterComponent {
 
     this.authservice.register(this.registerRequest)
         .pipe(catchError((error) => {
-      this.authservice.setAuthToken(null);
-      console.error('Register error', error);
-
+          this.authservice.setAuthToken(null);
+          console.error('Register error', error);
+          this.notification.add(NotificationType.Error, error.error.message,error.status, false);
       return of(error);
     }))
         .subscribe((response: any) => {
           this.authservice.setAuthToken(response.password);
 
           console.log('Register success', response);
-          this.router.navigate(['/login'])
+          this.notification.add(NotificationType.Success, "You register with success", '');
+          setTimeout(()=>{
+              this.router.navigate(['/login'])
+          },3000)
+
         });
   }
 }

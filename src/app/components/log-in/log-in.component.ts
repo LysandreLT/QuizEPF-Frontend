@@ -17,7 +17,7 @@ import {NotificationType} from "../../models/enums/NotificationType";
 export class LogInComponent {
 
     authRequest: AuthenticationRequest = {};
-    constructor(private authservice : AuthentificationService, private router : Router,private notification:NotificationService) {
+    constructor(private authservice : AuthentificationService, private router : Router, private notification:NotificationService) {
     }
 
     form: FormGroup = new FormGroup({
@@ -39,20 +39,17 @@ export class LogInComponent {
             .pipe(catchError((error) => {
                 this.authservice.setAuthToken(null);
                 console.error('Login error', error);
-                this.notification.add(NotificationType.Error, error.message,error.status, false);
+                this.notification.add(NotificationType.Error, error.error.message,error.status, false);
                 return of(error);
             }))
             .subscribe((response) => {
-
-            this.authservice.setAuthToken(response.password);
-
-            console.log('Login success', response.password);
-            //this.router.navigate(['/home']);
+                if (!response || !response.error) {
+                    // No error occurred during login
+                    this.authservice.setAuthToken(response.password);
+                    console.log('Login success', response.password);
+                    this.router.navigate(['/home']);
+                }
         });
     }
-    popUpServces() {
-        this.notification.add(NotificationType.Success, 'Via MessageService','', false);
-    }
-
 }
 

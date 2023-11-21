@@ -14,7 +14,14 @@ export class TabsComponent {
   }
 
   onLogout(){
-    this.authService.logout();
-    this.router.navigate(['']);
+    var isLogout = confirm("Do you really want to logout?")
+    if (isLogout){
+      this.authService.logout();
+      setTimeout(()=>{
+        this.router.navigate(['']);
+      },1000)
+
+    }
+
   }
 }
