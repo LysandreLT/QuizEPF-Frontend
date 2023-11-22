@@ -4,7 +4,7 @@
         <app-user-leaderboard></app-user-leaderboard>
     </mat-tab>
     <mat-tab label="Mes propres quiz">
-        <mat-card class="quiz-card">
+        <mat-card *ngFor="let quiz of quizs; let i = index" class="quiz-card">
             <mat-card-header>
                 <mat-card-title>Nom de Quiz</mat-card-title>
             </mat-card-header>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {catchError, map, Observable, throwError} from "rxjs";
+import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {RegisterRequest} from "../../models/RegisterRequest";
 import {AuthenticationResponse} from "../../models/AuthentificationResponse";

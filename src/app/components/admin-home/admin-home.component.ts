@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import {QuizUser} from "../../models/QuizUser";
-import {QuizUserService} from "../../services/QuizUserService";
 import {User} from "../../models/User";
 import {UserService} from "../../services/UserService";
 import {catchError, of} from "rxjs";
@@ -26,8 +24,6 @@ export class AdminHomeComponent {
       return of(error);
     }))
         .subscribe((users) => this.users = users);
-
-
   }
 
   modifyQuiz(id: bigint) {
