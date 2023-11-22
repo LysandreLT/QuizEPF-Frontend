@@ -67,6 +67,14 @@ export class QuizService {
         return this.authService.postData(`${this.quizUrl}/answers/${quizAnswer.id}`, quizAnswer)
     }
 
+    addQuizAnswer(quizAnswer:QuizAnswer):Observable<QuizAnswer>{
+        return this.authService.postData(`${this.quizUrl}/answers`, quizAnswer)
+    }
+
+    addQuizQuestion(quizQuestion:QuizQuestion):Observable<QuizQuestion>{
+        return this.authService.postData(`${this.quizUrl}/questions`, quizQuestion)
+    }
+
 
 
 }
