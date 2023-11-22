@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {Quiz} from "../../models/Quiz";
 import {AuthentificationService} from "../../services/auth/authentification.service";
 import { catchError, of} from 'rxjs';
-import {QuizUserService} from "../../services/QuizUserService";
+import {QuizService} from "../../services/QuizService";
 
 @Component({
   selector: 'app-profil-page',
@@ -13,9 +13,9 @@ export class ProfilPageComponent {
 
   quizs: Quiz[] = []
 
-  constructor(private quizUserService:QuizUserService, private authService:AuthentificationService) {
+  constructor(private quizService:QuizService, private authService:AuthentificationService) {
     // TODO By user id
-    this.quizUserService.getAllQuizByUserId(1).pipe(catchError((error) => {
+    this.quizService.getAllQuizByUserId(1).pipe(catchError((error) => {
       if (error.status === 401) {
         this.authService.setAuthToken(null);
       } else {
@@ -23,12 +23,11 @@ export class ProfilPageComponent {
       }
       return of(error);
     }))
-        .subscribe((quizs) => {this.quizs = quizs;
-        console.log(this.quizs)});
+        .subscribe((quizs) => this.quizs = quizs);
   }
 
   modifyCard() {
-    console.log('Modify card clicked');
+
   }
 
   deleteCard() {

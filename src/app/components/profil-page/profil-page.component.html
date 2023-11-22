@@ -6,7 +6,7 @@
     <mat-tab label="Mes propres quiz">
         <mat-card *ngFor="let quiz of quizs; let i = index" class="quiz-card">
             <mat-card-header>
-                <mat-card-title>Nom de Quiz</mat-card-title>
+                <mat-card-title>{{quiz.name}}</mat-card-title>
             </mat-card-header>
             <mat-card-actions align="end">
                 <button mat-icon-button (click)="modifyCard()">
