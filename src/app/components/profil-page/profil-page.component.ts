@@ -27,11 +27,19 @@ export class ProfilPageComponent {
   }
 
   modifyCard() {
-
+    // TODO Modifier Quiz
   }
 
-  deleteCard() {
-    console.log('Delete card clicked');
+  deleteQuiz(id: bigint) {
+    const isDeleted = confirm("Do you really want to delete this records?");
+    if (isDeleted)
+    {
+      this.quizService.deleteQuiz(id).subscribe(() => {
+        // TODO By user id
+        this.quizService.getAllQuizByUserId(1).subscribe(
+            (quizzes)=> this.quizs = quizzes)
+      })
+    }
   }
 
 }

@@ -23,12 +23,12 @@ export class QuizService {
         return this.authService.getData(this.quizUrl + `/user`)
     }
 
-    getAllQuizByUserId(userId: number): Observable<QuizUser[]> {
+    getAllQuizByUserId(userId: number): Observable<Quiz[]> {
         return this.authService.getData(this.quizUrl + `/user/${userId}`)
     }
 
-    deleteQuiz(id: bigint): void {
-        this.authService.deleteData(`${this.quizUrl}/${id}`)
+    deleteQuiz(id: bigint): Observable<Object> {
+        return this.authService.deleteData(`${this.quizUrl}/${id}`)
     }
 
     updateQuiz(quiz:Quiz):Observable<Quiz>{
