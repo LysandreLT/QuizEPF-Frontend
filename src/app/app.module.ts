@@ -37,6 +37,7 @@ import {GlobalErrorHandler} from "./services/notifications/global-error-handler.
 import {MessagesModule} from "primeng/messages";
 import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
+import { QuizComponent } from './components/quiz/quiz.component';
 
 
 
@@ -57,6 +58,7 @@ import {MessageService} from "primeng/api";
         UserHomeComponent,
         ProfilPageComponent,
         UserLeaderboardComponent,
+        QuizComponent,
     ],
     imports: [
         BrowserModule,

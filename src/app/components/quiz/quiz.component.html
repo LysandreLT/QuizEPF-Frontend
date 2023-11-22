@@ -1,0 +1,14 @@
+<p>TITLE</p>
+
+<app-quiz-question
+        [answers]="currentQuizAnswers"
+        [questionType]="currentQuizQuestion.questionType"
+        [question]="currentQuizQuestion.question"
+        [index]="quizIndex"
+        (answersIdEvent)="eventClicked()"
+        (nextQuestionEvent)="eventClicked()"
+        (previousQuestionEvent)="eventClicked()">
+
+</app-quiz-question>
+<button>terminer le test</button>
+

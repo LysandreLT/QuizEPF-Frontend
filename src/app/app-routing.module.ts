@@ -12,13 +12,14 @@ import {StartPageComponent} from "./components/start-page/start-page.component";
 import {UserHomeComponent} from "./components/user-home/user-home.component";
 import {authGuard} from "./services/auth/auth.guard";
 import {GlobalErrorHandler} from "./services/notifications/global-error-handler.service";
+import {QuizComponent} from "./components/quiz/quiz.component";
 
 
 
 const routes: Routes = [
   { path: "login", component: LogInComponent },
   { path: "register", component: RegisterComponent},
-  { path: "question", component: QuizQuestionComponent,},
+  { path: "quiz", component: QuizComponent,},
   { path: "results", component: ResultsComponent, },
   { path : "leaderboard", component : LeaderboardComponent,},
   { path: "createQuiz", component: CreateQuizComponent, },

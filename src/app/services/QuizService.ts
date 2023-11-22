@@ -48,8 +48,8 @@ export class QuizService {
 
     // Quiz answer
 
-    findAllQuizAnswers(): Observable<QuizAnswer[]> {
-        return this.autService.getData(`${this.quizUrl}/answers`)
+    findAllQuizAnswersByQuizId(quizId:number): Observable<QuizAnswer[]> {
+        return this.autService.getData(`${this.quizUrl}/answers/quiz/${quizId}`)
     }
 
     deleteQuizAnswer(id: bigint): void {
