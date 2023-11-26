@@ -18,7 +18,6 @@ export class LeaderboardComponent {
         this.quiz_id = +this.route.snapshot.params['id'];
         this.quizUserService.findByQuizId(this.quiz_id).subscribe((users) => {
             this.quizUsers = users.sort((a,b) => b.score - a.score)
-            console.log(this.quizUsers);
         })
     }
 }
