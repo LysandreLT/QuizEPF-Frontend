@@ -1,4 +1,4 @@
-:host {
+.form {
     display: flex;
     justify-content: center;
     margin: 100px 0px;
@@ -26,6 +26,7 @@ mat-card-content {
     display: flex;
     justify-content: space-between;
 }
+
 
 .buttonInscrire {
     display: flex;

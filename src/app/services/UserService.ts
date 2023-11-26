@@ -1,28 +1,28 @@
-import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Injectable} from "@angular/core";
 import {User} from "../models/User";
+import {AuthentificationService} from "./auth/authentification.service";
 
 @Injectable({
     providedIn: "root",
 })
 export class UserService {
-    constructor(private http: HttpClient) {
+    constructor( private authService:AuthentificationService) {
     }
 
-    private studentsUrl = "http://localhost:8080/users"
+    private userUrl = "users"
 
 
-/*    findAll(): Observable<User[]> {
-        return this.http.get<User[]>(this.studentsUrl)
-    }*/
+    findAll(): Observable<User[]> {
+        return this.authService.getData(this.userUrl)
+    }
 
-    /*OnLogin(input : any):void{
-        this.http.post(this.loginUrl,{
-            login: input.login,
-            password: input.password
-        })
-    }*/
+    updateUser(user:User):Observable<User>{
+        return this.authService.postData(`${this.userUrl}/${user.id}`, user)
+    }
 
+    deleteUser(id: number): Observable<Object> {
+        return this.authService.deleteData(`${this.userUrl}/${id}`)
+    }
 
 }

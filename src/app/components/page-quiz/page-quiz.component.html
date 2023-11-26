@@ -1,13 +1,24 @@
-<mat-card class="quiz-card">
-    <mat-card-header>
-        <mat-card-title>Nom de Quiz</mat-card-title>
+<p-toast position="top-center"></p-toast>
+<mat-card>
+    <mat-card-header class="align-center">
+        <h1> Tous les quiz</h1>
     </mat-card-header>
-    <mat-card-actions align="end">
-        <button mat-icon-button (click)="modifyCard()">
-            <mat-icon>edit</mat-icon>
-        </button>
-        <button mat-icon-button (click)="deleteCard()">
-            <mat-icon>delete</mat-icon>
-        </button>
-    </mat-card-actions>
+    <div *ngFor="let quiz of quizzes;">
+        <mat-card class="quiz-card">
+            <mat-card-header>
+                <mat-card-title>{{quiz.name}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <button (click)="participate(quiz.id)">Jouer</button>
+            </mat-card-content>
+            <!--<mat-card-actions align="end">
+                <button mat-icon-button (click)="updateQuiz()">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button (click)="deleteQuiz()">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-card-actions>-->
+        </mat-card>
+    </div>
 </mat-card>

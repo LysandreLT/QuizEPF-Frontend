@@ -1,1 +1,21 @@
-<h1>Name of User</h1>
+<h1>Profil</h1>
+<mat-tab-group>
+    <mat-tab label="Mes classements">
+        <app-user-leaderboard></app-user-leaderboard>
+    </mat-tab>
+    <mat-tab label="Mes propres quiz">
+        <mat-card *ngFor="let quiz of quizs; let i = index" class="quiz-card">
+            <mat-card-header>
+                <mat-card-title>{{quiz.name}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-actions align="end">
+                <button mat-icon-button (click)="modifyCard()">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button (click)="deleteQuiz(quiz.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </mat-tab>
+</mat-tab-group>

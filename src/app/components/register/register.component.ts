@@ -1,11 +1,11 @@
 import { Input, Component, Output, EventEmitter } from '@angular/core';
 import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
-import {UserService} from "../../services/UserService";
 import {catchError, Observable, of} from "rxjs";
-import {User} from "../../models/User";
-import {HttpClient} from "@angular/common/http";
-import {AuthentificationService} from "../../services/authentification.service";
+import {AuthentificationService} from "../../services/auth/authentification.service";
 import {Router} from "@angular/router";
+import {RegisterRequest} from "../../models/RegisterRequest";
+import {NotificationType} from "../../models/enums/NotificationType";
+import {NotificationService} from "../../services/notifications/notification.service";
 
 @Component({
   selector: 'register',
@@ -15,25 +15,18 @@ import {Router} from "@angular/router";
 })
 export class RegisterComponent {
 
-/*
-  users:Observable<User[]>*/
 
-  private registerUrl: string = "http://localhost:8080/register"
-  user = {
-    firstName: '',
-    lastName: '',
-    login: '',
-    password: ''
-  };
+  registerRequest: RegisterRequest = {};
+
 
   form: FormGroup = new FormGroup({
-    firstName: new FormControl(this.user.firstName,[Validators.required]),
-    lastName: new FormControl(this.user.lastName,[Validators.required]),
-    email: new FormControl(this.user.login,[Validators.required]),
-    password: new FormControl(this.user.password,[Validators.required])
+    firstName: new FormControl('',[Validators.required]),
+    lastName: new FormControl('',[Validators.required]),
+    email: new FormControl('',[Validators.required]),
+    password: new FormControl('',[Validators.required])
   });
 
-  constructor(private http: HttpClient, private authservice:AuthentificationService,private router: Router  ) {}
+  constructor(private authservice:AuthentificationService,private router: Router , private notification:NotificationService ) {}
 
   onSubmit() {
     if (this.form.valid) {
@@ -42,32 +35,27 @@ export class RegisterComponent {
   }
 
   onRegister():void {
-    this.user.firstName = this.form.get("firstName").value
-    this.user.lastName = this.form.get("lastName").value
-    this.user.login = this.form.get("email").value
-    this.user.password = this.form.get("password").value
+    this.registerRequest.firstName = this.form.get("firstName").value
+    this.registerRequest.lastName = this.form.get("lastName").value
+    this.registerRequest.email = this.form.get("email").value
+    this.registerRequest.password = this.form.get("password").value
 
+    this.authservice.register(this.registerRequest)
+        .pipe(catchError((error) => {
+          this.authservice.setAuthToken(null);
+          console.error('Register error', error);
+          this.notification.add(NotificationType.Error, error.error.message,error.status, false);
+      return of(error);
+    }))
+        .subscribe((response: any) => {
+          this.authservice.setAuthToken(response.password);
 
-    console.log(this.user)
+          console.log('Register success', response);
+          this.notification.add(NotificationType.Success, "You register with success", '');
+          setTimeout(()=>{
+              this.router.navigate(['/login'])
+          },3000)
 
-    this.http.post(this.registerUrl, this.user)
-      .pipe(catchError((error) => {
-        // Handle errors here, e.g., display an error message.
-        this.authservice.setAuthToken(null);
-        console.error('Register error', error);
-        return of(error); // You may want to return an observable here if needed
-      }))
-      .subscribe((response: any) => {
-        this.authservice.setAuthToken(response.token);
-
-        console.log('Register success', response);
-        this.router.navigate([''])
-      });
-
-
+        });
   }
-
-/*  @Input() error: string | null;
-
-  @Output() submitEM = new EventEmitter();*/
 }

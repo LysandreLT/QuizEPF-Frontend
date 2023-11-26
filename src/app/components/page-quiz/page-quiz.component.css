@@ -10,5 +10,16 @@
     width: 50%;
     overflow: hidden;
 }
+h1{
+    margin-top: 50px;
+    text-align: center;
+    font-family: 'Catamaran', sans-serif;
+    font-size: 50px;
+    color: darkgrey;
+}
+mat-card-header {
+    display: flex;
+    justify-content: center;
+}
 
 

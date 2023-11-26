@@ -25,3 +25,10 @@
     justify-content: center; /* Center horizontally */
 }
 
+h1{
+    margin-top: 50px;
+    text-align: center;
+    font-family: 'Catamaran', sans-serif;
+    font-size: 50px;
+    color: darkgrey;
+}

@@ -1,7 +1,7 @@
 <div class="outer">
 <div class="create">
 <mat-form-field>
-    <input matInput placeholder="nom de Quiz">
+    <input matInput placeholder="nom de Quiz" [(ngModel)]="quizData.name">
 </mat-form-field>
     </div>
 <div class="create">
@@ -16,7 +16,7 @@
         <div>
             <div>
             <mat-form-field>
-                <input matInput placeholder="Question">
+                <input matInput placeholder="Question" [(ngModel)]="panel.questionText">
             </mat-form-field>
             </div>
             <button
@@ -52,7 +52,7 @@
         <div *ngIf="panel.showContent === 2">
             <!-- Content for Button 2 -->
             <mat-form-field>
-                <input matInput placeholder="bonne réponse">
+                <input matInput placeholder="bonne réponse" [(ngModel)]="panel.correctAnswer">
             </mat-form-field>
         </div>
     </mat-expansion-panel>
@@ -60,6 +60,6 @@
 </div>
 <div class="create">
 <button mat-raised-button (click)="addPanel()">Ajouter Question</button>
-    <button mat-raised-button color="primary">Sauvegarder</button>
+    <button mat-raised-button color="primary" (click)="saveQuiz()">Sauvegarder</button>
 </div>
 </div>

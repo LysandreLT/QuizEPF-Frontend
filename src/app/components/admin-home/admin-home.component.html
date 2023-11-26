@@ -1,36 +1,27 @@
-<mat-tab-group>
-    <mat-tab label="Quiz">
-        <div class="center-button-container">
-        <button mat-button>
-            <mat-icon class="rounded-button">add</mat-icon>
-        </button></div>
-        <mat-card class="quiz-card">
-            <mat-card-header>
-                <mat-card-title>Nom de Quiz</mat-card-title>
-            </mat-card-header>
+<h1>Users</h1>
+<mat-card *ngFor="let user of users; let i = index" class="user-card">
+    <mat-card-header>
+        <div *ngIf="user.id != updateId">
+            <mat-card-title>{{i + 1}} : {{user.firstName}}</mat-card-title>
             <mat-card-actions align="end">
-                <button mat-icon-button (click)="modifyCard()">
+                <button mat-icon-button (click)="onUpdateUser(user.id)">
                     <mat-icon>edit</mat-icon>
                 </button>
-                <button mat-icon-button (click)="deleteCard()">
+                <button mat-icon-button (click)="deleteUser(user.id)">
                     <mat-icon>delete</mat-icon>
                 </button>
             </mat-card-actions>
-        </mat-card>
-    </mat-tab>
-    <mat-tab label="Users">
-        <mat-card class="user-card">
-            <mat-card-header>
-                <mat-card-title>Nom de User</mat-card-title>
-            </mat-card-header>
+        </div>
+        <div *ngIf="user.id == updateId">
+            <input id="user_firstName" type="text" matInput [(ngModel)]="user.firstName">
             <mat-card-actions align="end">
-                <button mat-icon-button (click)="modifyCard()">
-                    <mat-icon>edit</mat-icon>
+                <button mat-icon-button (click)="updateUser(user)">
+                    <mat-icon>save</mat-icon>
                 </button>
-                <button mat-icon-button (click)="deleteCard()">
-                    <mat-icon>delete</mat-icon>
+                <button mat-icon-button (click)="onCancelUpdate()">
+                    <mat-icon>cancel</mat-icon>
                 </button>
             </mat-card-actions>
-        </mat-card>
-    </mat-tab>
-</mat-tab-group>
+        </div>
+    </mat-card-header>
+</mat-card>

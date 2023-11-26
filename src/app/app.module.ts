@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { QuizQuestionComponent } from './components/quiz-question/quiz-question.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { AppRoutingModule } from './app-routing.module';
@@ -18,7 +18,6 @@ import { RegisterComponent } from './components/register/register.component';
 import { AdminHomeComponent } from './components/admin-home/admin-home.component';
 import {LeaderboardComponent} from "./components/leaderboard/leaderboard.component";
 import {NavbarComponent} from "./components/navbar/navbar.component";
-import { UserListComponent } from './components/user-list/user-list.component';
 import { CreateQuizComponent } from './components/create-quiz/create-quiz.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -29,28 +28,39 @@ import { TabsComponent } from './components/tabs/tabs.component';
 import { PageQuizComponent } from './components/page-quiz/page-quiz.component';
 import { StartPageComponent } from './components/start-page/start-page.component';
 import { UserHomeComponent } from './components/user-home/user-home.component';
-import { ProfilPageComponent } from './components/profil-page/profil-page.component'; // Import NoopAnimationsModule
+import { ProfilPageComponent } from './components/profil-page/profil-page.component';
+import { UserLeaderboardComponent } from './components/user-leaderboard/user-leaderboard.component';
+import {MatTableModule} from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatDialogModule} from "@angular/material/dialog";
+import {GlobalErrorHandler} from "./services/notifications/global-error-handler.service";
+import {MessagesModule} from "primeng/messages";
+import {ToastModule} from "primeng/toast";
+import {MessageService} from "primeng/api";
+import { QuizComponent } from './components/quiz/quiz.component';
 
 
 
 @NgModule({
     declarations: [
         AppComponent,
-        QuizQuestionComponent,
         ResultsComponent,
+        LeaderboardComponent,
         LogInComponent,
         RegisterComponent,
         AdminHomeComponent,
-        UserListComponent,
         NavbarComponent,
         CreateQuizComponent,
         TabsComponent,
         PageQuizComponent,
         StartPageComponent,
         UserHomeComponent,
-        ProfilPageComponent
+        ProfilPageComponent,
+        UserLeaderboardComponent,
+        QuizComponent,
     ],
-  imports: [
+    imports: [
+        CommonModule,
         BrowserModule,
         BrowserAnimationsModule,
         MatSlideToggleModule,
@@ -68,8 +78,17 @@ import { ProfilPageComponent } from './components/profil-page/profil-page.compon
         HttpClientModule,
         MatTabsModule,
         MatIconModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatDialogModule,
+        MessagesModule,
+        ToastModule
     ],
-  providers: [],
+  providers: [{
+      provide:ErrorHandler,
+      useClass:GlobalErrorHandler
+  },
+      MessageService],
   bootstrap: [AppComponent]
 })
 
