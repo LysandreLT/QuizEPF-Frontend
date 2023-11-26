@@ -1,7 +1,7 @@
 <p-toast position="top-center"></p-toast>
 <mat-card>
     <mat-card-header class="align-center">
-        <h1> All Quizzes</h1>
+        <h1> Tous les quizzes</h1>
     </mat-card-header>
     <div *ngFor="let quiz of quizzes;">
         <mat-card class="quiz-card">
@@ -9,7 +9,7 @@
                 <mat-card-title>{{quiz.name}}</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                Create By id
+                <button (click)="participate(quiz.id)">Jouer</button>
             </mat-card-content>
             <!--<mat-card-actions align="end">
                 <button mat-icon-button (click)="updateQuiz()">

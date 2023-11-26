@@ -40,7 +40,7 @@ export class CreateQuizComponent {
         question: panel.questionText,
         quiz: quiz,
         questionType: panel.showContent,
-        questionValue: panel.showContent === 1 ? panel.checkBoxes.length : undefined
+        questionValue: 50
       };
     });
 
@@ -70,52 +70,64 @@ export class CreateQuizComponent {
 
     this.quizService.addQuiz(quiz).subscribe((q)=>{
       quiz.id = q.id;
-      console.log(q.id)
-    })
-    //this.quizService.addQuiz(quiz);
+      console.log(quiz.id)
 
-    // Save questions
-    /*for (let i = 0; i < this.panels.length; i++) {
-      const panel = this.panels[i];
-      const question: QuizQuestion = {
-        question: panel.questionText,
-        quiz: quiz,
-        questionType: panel.showContent,
-        questionValue: panel.showContent === 1 ? panel.checkBoxes.length : undefined
-      };
-
-      console.log(question)
-
-      this.quizService.addQuizQuestion(question).subscribe((quest)=>{
-        question.id = quest.id;
-      })
-
-      // Save answers
-      if (panel.showContent === 1) {
-        for (let j = 0; j < panel.checkBoxes.length; j++) {
-          const checkBox = panel.checkBoxes[j];
-          const answer: QuizAnswer = {
-            quizQuestion: question,
-            isTrue: checkBox.checked,
-            answer: checkBox.text
-          };
-
-          this.quizService.addQuizAnswer(answer);
-        }
-
-      } else if (panel.showContent === 2) {
-        const answer: QuizAnswer = {
-          quizQuestion: question,
-          isTrue: false,
-          answer: panel.correctAnswer
+      // Save questions
+      for (let i = 0; i < this.panels.length; i++) {
+        const panel = this.panels[i];
+        const question: QuizQuestion = {
+          question: panel.questionText,
+          quiz: quiz,
+          questionType: panel.showContent,
+          questionValue: 50
         };
 
-        this.quizService.addQuizAnswer(answer);
+        console.log(question)
+
+        this.quizService.addQuizQuestion(question).subscribe((quest)=>{
+          question.id = quest.id;
+          console.log(question.id)
+
+          // Save answers
+          if (panel.showContent === 1) {
+            for (let j = 0; j < panel.checkBoxes.length; j++) {
+              const checkBox = panel.checkBoxes[j];
+              const answer: QuizAnswer = {
+                quizQuestion: question,
+                isTrue: checkBox.checked,
+                answer: checkBox.text
+              };
+
+              console.log(answer)
+
+              this.quizService.addQuizAnswer(answer).subscribe((ans)=>{
+                console.log(ans.id)
+                window.location.reload()
+              })
+            }
+
+          } else if (panel.showContent === 2) {
+            const answer: QuizAnswer = {
+              quizQuestion: question,
+              isTrue: true,
+              answer: panel.correctAnswer
+            };
+            console.log(answer)
+            this.quizService.addQuizAnswer(answer).subscribe((ans)=>{
+              console.log(ans.id)
+              window.location.reload()
+            })
+          }
+        })
+
+
+
+        //createQuiz(quiz, questions, answers)
+
       }
+    })
 
-      //createQuiz(quiz, questions, answers)
 
-    }*/
   }
 
 

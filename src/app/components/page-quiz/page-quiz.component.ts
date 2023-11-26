@@ -5,6 +5,7 @@ import {catchError, of} from "rxjs";
 import {QuizService} from "../../services/QuizService";
 import {NotificationService} from "../../services/notifications/notification.service";
 import {NotificationType} from "../../models/enums/NotificationType";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-page-quiz',
@@ -15,7 +16,7 @@ export class PageQuizComponent {
 
   quizzes:Quiz[]
 
-  constructor(private quizService:QuizService, private authService:AuthentificationService,private notification:NotificationService) {
+  constructor(private router : Router,private quizService:QuizService, private authService:AuthentificationService,private notification:NotificationService) {
     this.quizService.findAllQuizzes().pipe(catchError((error) => {
       if (error.status === 401) {
         this.authService.setAuthToken(null);
@@ -33,6 +34,10 @@ export class PageQuizComponent {
 
   deleteQuiz() {
     console.log('Delete card clicked');
+  }
+
+  participate(id:number){
+    this.router.navigate([`quiz/${id}`])
   }
 
 }
