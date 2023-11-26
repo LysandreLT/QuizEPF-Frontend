@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: "register", component: RegisterComponent},
   { path: "quiz/:id", component: QuizComponent,},
   { path: "results", component: ResultsComponent, },
-  { path : "leaderboard", component : LeaderboardComponent,},
+  { path : "leaderboard/:id", component : LeaderboardComponent,},
   { path: "createQuiz", component: CreateQuizComponent, },
   { path: "adminHome", component: AdminHomeComponent ,},
   {path: "",  component: StartPageComponent, pathMatch: "full",},

@@ -22,9 +22,10 @@ export class QuizUserService {
 
 
     findRanking(userId:number):Observable<Ranking[]>{
-        return this.authService.getData(`${this.quizUserUrl}/${userId}`)}
+        return this.authService.getData(`${this.quizUserUrl}/${userId}`)
+    }
 
-    getAllQuizByUserId(userId: number): Observable<QuizUser[]> {
-        return this.authService.getData(this.quizUserUrl + `/user/${userId}`)
+    findByQuizId(quizId:number):Observable<QuizUser[]>{
+        return this.authService.getData(`${this.quizUserUrl}/quiz/${quizId}`);
     }
 }

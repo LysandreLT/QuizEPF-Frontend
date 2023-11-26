@@ -19,7 +19,7 @@ export class QuizComponent implements OnInit {
   currentQuizQuestion: QuizQuestion
   currentQuizAnswers: QuizAnswer[] = []
   quizIndex: number = 0
-  selectedAnswerId: bigint;
+  selectedAnswerId: number;
   writtenAnswer: string;
 
 

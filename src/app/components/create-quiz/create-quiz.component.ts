@@ -18,8 +18,6 @@ export class CreateQuizComponent {
   //variables
   user:User = {id: (1), email: "", firstName: "", lastName: "", password: ""}
   quizData: Quiz = {name: '', user: this.user };
-  quizQuestionId : number
-
 
   //constructor
   constructor(private quizService: QuizService) {
@@ -29,12 +27,9 @@ export class CreateQuizComponent {
   //Sauvegarder Button
   saveQuiz() {
     const quiz: Quiz = {
-
       name: this.quizData.name,
       user: this.quizData.user
-
     };
-
     const questions: QuizQuestion[] = this.panels.map(panel => {
       return {
         question: panel.questionText,
@@ -64,13 +59,8 @@ export class CreateQuizComponent {
     });
 
     //Send to backend
-
-    //console.log(questions);
-    //console.log(answers);
-
     this.quizService.addQuiz(quiz).subscribe((q)=>{
       quiz.id = q.id;
-      console.log(quiz.id)
 
       // Save questions
       for (let i = 0; i < this.panels.length; i++) {
@@ -82,11 +72,9 @@ export class CreateQuizComponent {
           questionValue: 50
         };
 
-        console.log(question)
 
         this.quizService.addQuizQuestion(question).subscribe((quest)=>{
           question.id = quest.id;
-          console.log(question.id)
 
           // Save answers
           if (panel.showContent === 1) {
@@ -98,10 +86,9 @@ export class CreateQuizComponent {
                 answer: checkBox.text
               };
 
-              console.log(answer)
 
               this.quizService.addQuizAnswer(answer).subscribe((ans)=>{
-                console.log(ans.id)
+
                 window.location.reload()
               })
             }
@@ -112,18 +99,13 @@ export class CreateQuizComponent {
               isTrue: true,
               answer: panel.correctAnswer
             };
-            console.log(answer)
+
             this.quizService.addQuizAnswer(answer).subscribe((ans)=>{
-              console.log(ans.id)
+
               window.location.reload()
             })
           }
         })
-
-
-
-        //createQuiz(quiz, questions, answers)
-
       }
     })
 
