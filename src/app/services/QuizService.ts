@@ -46,6 +46,11 @@ export class QuizService {
         return this.autService.postData(`${this.quizUrl}/questions/${quiz.id}`, quiz)
     }
 
+    postAnswers(quizAnswers: QuizAnswer[], quizId:bigint, userId:bigint):Observable<number>{
+        return this.autService.postData(`${this.quizUrl}/score/${quizId}/${userId}`,quizAnswers)
+
+    }
+
     // Quiz answer
 
     findAllQuizAnswersByQuizId(quizId:number): Observable<QuizAnswer[]> {

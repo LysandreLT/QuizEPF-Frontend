@@ -4,6 +4,7 @@ import {QuizService} from "../../services/QuizService";
 import {QuizAnswer} from "../../models/QuizAnswer";
 import {QuizQuestion} from "../../models/QuizQuestion";
 import {QuestionType} from "../../models/QuizAnswerType";
+import {Quiz} from "../../models/Quiz";
 
 
 @Component({
@@ -28,8 +29,8 @@ export class QuizComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //this.quiz_id = this.route.snapshot.params['quiz_id'];
-    this.quizService.findAllQuizAnswersByQuizId(1).subscribe((data: QuizAnswer[]) => {
+    this.quiz_id = +this.route.snapshot.params['id'];
+    this.quizService.findAllQuizAnswersByQuizId(this.quiz_id).subscribe((data: QuizAnswer[]) => {
       this.quizAnswers = data;
       this.quizAnswers.forEach((quizAnswer: QuizAnswer) => {
         if (!this.quizQuestions.find(quizQuestion => quizQuestion.id === quizAnswer.quizQuestion.id)) {
@@ -43,10 +44,12 @@ export class QuizComponent implements OnInit {
 
   updateCurrentQuizAnswers(): void {
     this.currentQuizAnswers = this.quizAnswers.filter(quizAnswer => quizAnswer.quizQuestion.id === this.currentQuizQuestion.id);
+    console.log(this.currentQuizAnswers)
   }
 
   getNextQuestion(): void {
     if (this.quizIndex < this.quizQuestions.length - 1) {
+
       this.quizIndex++;
       this.currentQuizQuestion = this.quizQuestions[this.quizIndex];
       this.updateCurrentQuizAnswers();
