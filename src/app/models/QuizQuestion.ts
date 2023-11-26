@@ -3,7 +3,7 @@ import {Quiz} from "./Quiz";
 
 
 export interface QuizQuestion {
-    id?: bigint
+    id?: number
     question: String,
     quiz: Quiz
     questionType: number

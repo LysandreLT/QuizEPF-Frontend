@@ -2,7 +2,7 @@ import {User} from "./User";
 import {Quiz} from "./Quiz";
 
 export interface QuizUser {
-    id?: bigint,
+    id?: number,
     user: User,
     quiz: Quiz,
     score: number

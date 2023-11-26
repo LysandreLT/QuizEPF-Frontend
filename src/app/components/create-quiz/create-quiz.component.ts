@@ -3,6 +3,7 @@ import {QuizQuestion} from "../../models/QuizQuestion";
 import {QuizAnswer} from "../../models/QuizAnswer";
 import {Quiz} from "../../models/Quiz";
 import { QuizService } from '../../services/QuizService';
+import {User} from "../../models/User";
 
 
 
@@ -15,7 +16,10 @@ export class CreateQuizComponent {
   panels: any[] = [];
 
   //variables
-  quizData: Quiz = {name: '', user: null };
+  user:User = {id: (1), email: "", firstName: "", lastName: "", password: ""}
+  quizData: Quiz = {name: '', user: this.user };
+  quizQuestionId : number
+
 
   //constructor
   constructor(private quizService: QuizService) {
@@ -25,8 +29,10 @@ export class CreateQuizComponent {
   //Sauvegarder Button
   saveQuiz() {
     const quiz: Quiz = {
+
       name: this.quizData.name,
       user: this.quizData.user
+
     };
 
     const questions: QuizQuestion[] = this.panels.map(panel => {
@@ -62,12 +68,14 @@ export class CreateQuizComponent {
     //console.log(questions);
     //console.log(answers);
 
-    const addedquiz = this.quizService.addQuiz(quiz)
-    console.log(addedquiz.subscribe())
+    this.quizService.addQuiz(quiz).subscribe((q)=>{
+      quiz.id = q.id;
+      console.log(q.id)
+    })
     //this.quizService.addQuiz(quiz);
 
     // Save questions
-    for (let i = 0; i < this.panels.length; i++) {
+    /*for (let i = 0; i < this.panels.length; i++) {
       const panel = this.panels[i];
       const question: QuizQuestion = {
         question: panel.questionText,
@@ -76,7 +84,11 @@ export class CreateQuizComponent {
         questionValue: panel.showContent === 1 ? panel.checkBoxes.length : undefined
       };
 
-      this.quizService.addQuizQuestion(question);
+      console.log(question)
+
+      this.quizService.addQuizQuestion(question).subscribe((quest)=>{
+        question.id = quest.id;
+      })
 
       // Save answers
       if (panel.showContent === 1) {
@@ -101,7 +113,9 @@ export class CreateQuizComponent {
         this.quizService.addQuizAnswer(answer);
       }
 
-    }
+      //createQuiz(quiz, questions, answers)
+
+    }*/
   }
 
 

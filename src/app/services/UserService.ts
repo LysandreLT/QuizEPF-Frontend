@@ -21,7 +21,7 @@ export class UserService {
         return this.authService.postData(`${this.userUrl}/${user.id}`, user)
     }
 
-    deleteUser(id: bigint): Observable<Object> {
+    deleteUser(id: number): Observable<Object> {
         return this.authService.deleteData(`${this.userUrl}/${id}`)
     }
 

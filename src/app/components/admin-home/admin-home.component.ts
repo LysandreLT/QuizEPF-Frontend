@@ -12,7 +12,7 @@ import {AuthentificationService} from "../../services/auth/authentification.serv
 export class AdminHomeComponent {
 
   users:User[]
-  updateId: bigint
+  updateId: number
 
   constructor(private userService:UserService, private authService:AuthentificationService) {
     this.userService.findAll().pipe(catchError((error) => {
@@ -26,11 +26,11 @@ export class AdminHomeComponent {
         .subscribe((users) => this.users = users);
   }
 
-  modifyQuiz(id: bigint) {
+  modifyQuiz(id: number) {
 
   }
 
-  deleteQuiz(id: bigint) {
+  deleteQuiz(id: number) {
 
   }
 
@@ -43,11 +43,11 @@ export class AdminHomeComponent {
     this.updateId=null
   }
 
-  onUpdateUser(id: bigint) {
+  onUpdateUser(id: number) {
     this.updateId = id
   }
 
-  deleteUser(id: bigint) {
+  deleteUser(id: number) {
     var isDeleted = confirm("Do you really want to delete this records?")
 
     if (isDeleted)

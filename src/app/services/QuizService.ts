@@ -27,7 +27,7 @@ export class QuizService {
         return this.authService.getData(this.quizUrl + `/user/${userId}`)
     }
 
-    deleteQuiz(id: bigint): Observable<Object> {
+    deleteQuiz(id: number): Observable<Object> {
         return this.authService.deleteData(`${this.quizUrl}/${id}`)
     }
 
@@ -73,6 +73,14 @@ export class QuizService {
 
     addQuizQuestion(quizQuestion:QuizQuestion):Observable<QuizQuestion>{
         return this.authService.postData(`${this.quizUrl}/questions`, quizQuestion)
+    }
+
+    createQuiz(quiz,questions:QuizQuestion,answers){
+        this.authService.postData(`${this.quizUrl}/quiz/questions/answers`, {
+            quiz:quiz,
+            questions:questions,
+            answers : answers
+        })
     }
 
 

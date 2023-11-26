@@ -30,7 +30,7 @@ export class ProfilPageComponent {
     // TODO Modifier Quiz
   }
 
-  deleteQuiz(id: bigint) {
+  deleteQuiz(id: number) {
     const isDeleted = confirm("Do you really want to delete this records?");
     if (isDeleted)
     {
