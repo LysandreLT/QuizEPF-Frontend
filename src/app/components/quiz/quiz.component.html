@@ -1,20 +1,21 @@
 <!-- quiz.component.html -->
 <mat-progress-bar mode="determinate" [value]="quizIndex / quizQuestions.length * 100"></mat-progress-bar>
 <div>
-    <h2>{{ currentQuizQuestion.question }}</h2>
-    <ng-container *ngIf="currentQuizQuestion.questionType == 'SINGLECHOICE'">
-        <ul>
-            <li *ngFor="let answer of currentQuizAnswers">
-                <label>
-                    <input type="radio" name="answer" [value]="answer.id" (change)="eventClicked()">
-                    {{ answer.answer }}
-                </label>
-            </li>
-        </ul>
-    </ng-container>
-
-    <ng-container *ngIf="currentQuizQuestion.questionType == 'WRITTENANSWER'">
-        <textarea placeholder="Type your answer..."></textarea>
+    <ng-container *ngIf="currentQuizQuestion">
+        <h2>{{ currentQuizQuestion.question }}</h2>
+        <ng-container *ngIf="currentQuizQuestion.questionType == 'SINGLECHOICE'">
+            <ul>
+                <li *ngFor="let answer of currentQuizAnswers">
+                    <label>
+                        <input type="radio" name="answer" [value]="answer.id" (change)="eventClicked()">
+                        {{ answer.answer }}
+                    </label>
+                </li>
+            </ul>
+        </ng-container>
+        <ng-container *ngIf="currentQuizQuestion.questionType == 'WRITTENANSWER'">
+            <textarea placeholder="Type your answer..."></textarea>
+        </ng-container>
     </ng-container>
 </div>
 
