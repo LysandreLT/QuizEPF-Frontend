@@ -1,7 +1,7 @@
 import {ErrorHandler, NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { QuizQuestionComponent } from './components/quiz-question/quiz-question.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { AppRoutingModule } from './app-routing.module';
@@ -37,13 +37,13 @@ import {GlobalErrorHandler} from "./services/notifications/global-error-handler.
 import {MessagesModule} from "primeng/messages";
 import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
+import { QuizComponent } from './components/quiz/quiz.component';
 
 
 
 @NgModule({
     declarations: [
         AppComponent,
-        QuizQuestionComponent,
         ResultsComponent,
         LeaderboardComponent,
         LogInComponent,
@@ -57,8 +57,10 @@ import {MessageService} from "primeng/api";
         UserHomeComponent,
         ProfilPageComponent,
         UserLeaderboardComponent,
+        QuizComponent,
     ],
     imports: [
+        CommonModule,
         BrowserModule,
         BrowserAnimationsModule,
         MatSlideToggleModule,

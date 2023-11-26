@@ -1,78 +1,81 @@
 <p-toast position="top-center"></p-toast>
-<mat-card>
-    <mat-card-title>Register</mat-card-title>
-    <mat-card-content>
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
-            <p>
-                <mat-form-field>
-                    <input type="text" matInput placeholder="nom"  required minlength="4" formControlName="lastName" >
-                    <div *ngIf="form.get('lastName').invalid && (form.get('lastName').dirty || form.get('lastName').touched)" class="alert">
-                        <div *ngIf="form.get('lastName').errors?.['required']">
-                            Last Name is required.
+<app-user-home></app-user-home>
+<div class="form">
+    <mat-card>
+        <mat-card-title>Register</mat-card-title>
+        <mat-card-content>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <p>
+                    <mat-form-field>
+                        <input type="text" matInput placeholder="nom"  required minlength="4" formControlName="lastName" >
+                        <div *ngIf="form.get('lastName').invalid && (form.get('lastName').dirty || form.get('lastName').touched)" class="alert">
+                            <div *ngIf="form.get('lastName').errors?.['required']">
+                                Last Name is required.
+                            </div>
+                            <div *ngIf="form.get('lastName').errors?.['minlength']">
+                                Last Name must be at least 4 characters long.
+                            </div>
                         </div>
-                        <div *ngIf="form.get('lastName').errors?.['minlength']">
-                            Last Name must be at least 4 characters long.
+
+                    </mat-form-field>
+                </p>
+
+                <p>
+                    <mat-form-field>
+                        <input type="text" matInput placeholder="prénom" required minlength="4" formControlName="firstName">
+                        <div *ngIf="form.get('firstName').invalid && (form.get('firstName').dirty || form.get('firstName').touched)" class="alert">
+
+                            <div *ngIf="form.get('firstName').errors?.['required']">
+                                Firstname is required.
+                            </div>
+                            <div *ngIf="form.get('firstName').errors?.['minlength']">
+                                Firstname must be at least 4 characters long.
+                            </div>
                         </div>
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field>
+                        <input type="email" matInput placeholder="email" formControlName="email">
+                        <div *ngIf="form.get('email').invalid && (form.get('email').dirty || form.get('email').touched)"
+                             class="alert">
+
+                            <div *ngIf="form.get('email').errors?.['required']">
+                                email is required.
+                            </div>
+
+                        </div>
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field>
+                        <input type="password" matInput placeholder="mot de passe" required minlength="8" formControlName="password">
+                        <div *ngIf="form.get('password').invalid && (form.get('password').dirty || form.get('password').touched)"
+                             class="alert">
+
+                            <div *ngIf="form.get('password').errors?.['required']">
+                                password is required.
+                            </div>
+                            <div *ngIf="form.get('password').errors?.['minlength']">
+                                password must be at least 8 characters long.
+                            </div>
+                        </div>
+                    </mat-form-field>
+                </p>
+
+                <div class="button-container">
+
+                    <div class="buttonLeft">
+                        <button type="submit" mat-button><a href="login">déjà inscrit</a></button>
                     </div>
 
-                </mat-form-field>
-            </p>
-
-            <p>
-                <mat-form-field>
-                    <input type="text" matInput placeholder="prénom" required minlength="4" formControlName="firstName">
-                    <div *ngIf="form.get('firstName').invalid && (form.get('firstName').dirty || form.get('firstName').touched)" class="alert">
-
-                        <div *ngIf="form.get('firstName').errors?.['required']">
-                            Firstname is required.
-                        </div>
-                        <div *ngIf="form.get('firstName').errors?.['minlength']">
-                            Firstname must be at least 4 characters long.
-                        </div>
+                    <div class="buttonRight">
+                        <button type="submit" mat-button>S'inscrire</button>
                     </div>
-                </mat-form-field>
-            </p>
-            <p>
-                <mat-form-field>
-                    <input type="email" matInput placeholder="email" formControlName="email">
-                    <div *ngIf="form.get('email').invalid && (form.get('email').dirty || form.get('email').touched)"
-                         class="alert">
 
-                        <div *ngIf="form.get('email').errors?.['required']">
-                            email is required.
-                        </div>
-
-                    </div>
-                </mat-form-field>
-            </p>
-            <p>
-                <mat-form-field>
-                    <input type="password" matInput placeholder="mot de passe" required minlength="8" formControlName="password">
-                    <div *ngIf="form.get('password').invalid && (form.get('password').dirty || form.get('password').touched)"
-                         class="alert">
-
-                        <div *ngIf="form.get('password').errors?.['required']">
-                            password is required.
-                        </div>
-                        <div *ngIf="form.get('password').errors?.['minlength']">
-                            password must be at least 8 characters long.
-                        </div>
-                    </div>
-                </mat-form-field>
-            </p>
-
-            <div class="button-container">
-
-                <div class="buttonLeft">
-                    <button type="submit" mat-button><a href="login">déjà inscrit</a></button>
                 </div>
 
-                <div class="buttonRight">
-                    <button type="submit" mat-button>S'inscrire</button>
-                </div>
-
-            </div>
-
-        </form>
-    </mat-card-content>
-</mat-card>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

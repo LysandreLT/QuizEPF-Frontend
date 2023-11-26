@@ -1,4 +1,13 @@
-<div *ngFor="let entry of quizUsers; let elementIndex=index;" class="leaderboard-entry">
-    N°{{elementIndex+1}} : {{ entry.user.firstName }} - {{ entry.score }}
+<app-user-home></app-user-home>
+<div class="leaderboard">
+
+    <div class="leaderboard-row">
+        <div *ngFor="let entry of quizUsers; let elementIndex=index;" class="leaderboard-entry">
+            N°{{elementIndex+1}} : {{ entry.user.firstName }} - {{ entry.score }}
+        </div>
+
+        <a class="accueil" mat-raised-button href="">Accueil</a>
+    </div>
+
+
 </div>
-<a mat-raised-button href="">Accueil</a>

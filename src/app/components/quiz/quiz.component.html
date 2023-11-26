@@ -1,0 +1,29 @@
+<!-- quiz.component.html -->
+<app-user-home></app-user-home>
+<mat-progress-bar mode="determinate" [value]="quizIndex / quizQuestions.length * 100"></mat-progress-bar>
+<div>
+    <ng-container *ngIf="currentQuizQuestion">
+        <h2>{{ currentQuizQuestion.question }}</h2>
+        <ng-container *ngIf="currentQuizQuestion.questionType == 'SINGLECHOICE'">
+            <ul>
+                <li *ngFor="let answer of currentQuizAnswers">
+                    <label>
+                        <input type="radio" name="answer" [value]="answer.id" [(ngModel)]="selectedAnswerId" (change)="eventClicked()">
+                        {{ answer.answer }}
+                    </label>
+                </li>
+            </ul>
+        </ng-container>
+        <ng-container *ngIf="currentQuizQuestion.questionType == 'WRITTENANSWER'">
+            <textarea [(ngModel)]="writtenAnswer" (change)="eventClicked()" placeholder="Entrez votre réponse..."></textarea>
+        </ng-container>
+    </ng-container>
+</div>
+
+<div>
+    <button (click)="getPreviousQuestion()" [disabled]="quizIndex === 0">Précédent</button>
+    <button (click)="getNextQuestion()" [disabled]="quizIndex === quizQuestions.length - 1">Suivant</button>
+</div>
+<div>
+    <button (click)="postAnswers()">Terminer le test</button>
+</div>

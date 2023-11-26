@@ -53,10 +53,20 @@ export class QuizService {
         return this.authService.postData(`${this.quizUrl}/questions/${quiz.id}`, quiz)
     }
 
+    postAnswers(quizAnswers: QuizAnswer[], quizId:number, userId:number):Observable<number>{
+        return this.authService.postData(`${this.quizUrl}/score/${quizId}/${userId}`,quizAnswers)
+
+    }
+
     // Quiz answer
 
     findAllQuizAnswers(): Observable<QuizAnswer[]> {
         return this.authService.getData(`${this.quizUrl}/answers`)
+    }
+
+    findAllQuizAnswersByQuizId(quizId:number): Observable<QuizAnswer[]> {
+        return this.authService.getData(`${this.quizUrl}/answers/quiz/${quizId}`)
+
     }
 
     deleteQuizAnswer(id: bigint): void {
