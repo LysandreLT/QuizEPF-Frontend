@@ -1,4 +1,3 @@
-import {User} from "./User";
 import {QuizQuestion} from "./QuizQuestion";
 
 export interface QuizAnswer {

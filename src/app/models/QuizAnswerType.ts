@@ -1,15 +1,15 @@
 export enum QuestionType{
-    SINGLE,
+    SINGLECHOICE,
     QCM,
-    WRITTEN
+    WRITTENANSWER
 }
 export const QuestionTypeMapToString: { [key:number]:string} = {
-    0:"SINGLE",
+    0:"SINGLECHOICE",
     1:"QCM",
-    2:"WRITTEN",
+    2:"WRITTENANSWER",
 }
 export const QuestionTypeMapToEnum: { [key:number]:QuestionType} = {
-    0:QuestionType.SINGLE,
+    0:QuestionType.SINGLECHOICE,
     1:QuestionType.QCM,
-    2:QuestionType.WRITTEN,
+    2:QuestionType.WRITTENANSWER,
 }

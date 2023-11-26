@@ -1,7 +1,7 @@
 import {ErrorHandler, NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { QuizQuestionComponent } from './components/quiz-question/quiz-question.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { AppRoutingModule } from './app-routing.module';
@@ -44,7 +44,6 @@ import { QuizComponent } from './components/quiz/quiz.component';
 @NgModule({
     declarations: [
         AppComponent,
-        QuizQuestionComponent,
         ResultsComponent,
         LeaderboardComponent,
         LogInComponent,
@@ -61,6 +60,7 @@ import { QuizComponent } from './components/quiz/quiz.component';
         QuizComponent,
     ],
     imports: [
+        CommonModule,
         BrowserModule,
         BrowserAnimationsModule,
         MatSlideToggleModule,
