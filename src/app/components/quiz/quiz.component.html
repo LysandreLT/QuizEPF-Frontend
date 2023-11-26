@@ -1,4 +1,5 @@
 <!-- quiz.component.html -->
+<app-user-home></app-user-home>
 <mat-progress-bar mode="determinate" [value]="quizIndex / quizQuestions.length * 100"></mat-progress-bar>
 <div>
     <ng-container *ngIf="currentQuizQuestion">
@@ -22,4 +23,7 @@
 <div>
     <button (click)="getPreviousQuestion()" [disabled]="quizIndex === 0">Précédent</button>
     <button (click)="getNextQuestion()" [disabled]="quizIndex === quizQuestions.length - 1">Suivant</button>
+</div>
+<div>
+    <button (click)="postAnswers()">Terminer le test</button>
 </div>

@@ -23,7 +23,6 @@ const routes: Routes = [
   { path : "leaderboard", component : LeaderboardComponent,},
   { path: "createQuiz", component: CreateQuizComponent, },
   { path: "adminHome", component: AdminHomeComponent ,},
-  { path: "home", component: UserHomeComponent,  },
   {path: "",  component: StartPageComponent, pathMatch: "full",},
 ]
 

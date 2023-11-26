@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {QuizService} from "../../services/QuizService";
 import {QuizAnswer} from "../../models/QuizAnswer";
 import {QuizQuestion} from "../../models/QuizQuestion";
@@ -25,7 +25,7 @@ export class QuizComponent implements OnInit {
   writtenAnswer: string;
 
 
-  constructor(private route: ActivatedRoute, private quizService: QuizService) {
+  constructor(private route: ActivatedRoute, private quizService: QuizService, private router:Router) {
   }
 
   ngOnInit(): void {
@@ -74,6 +74,12 @@ export class QuizComponent implements OnInit {
       case "WRITTENANSWER":
         break;
     }
+  }
+
+  postAnswers(){
+    this.quizService.postAnswers(this.quizAnswers, this.quiz_id,1).subscribe( (score)=>{
+      this.router.navigate(['/leaderboard'])
+    })
   }
 
   protected readonly QuestionType = QuestionType;

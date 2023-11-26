@@ -1,0 +1,17 @@
+.leaderboard{
+    display: flex;
+    justify-content: center;
+    margin: 100px 0px;
+}
+.leaderboard-row{
+    display: block;
+    font-size: 25px;
+}
+.leaderboard-entry{
+    margin-bottom: 20px;
+}
+
+.accueil{
+    margin-left: 40px;
+    margin-top: 40px;
+}
