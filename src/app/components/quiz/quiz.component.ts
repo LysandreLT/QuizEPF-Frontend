@@ -28,8 +28,8 @@ export class QuizComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //this.quiz_id = this.route.snapshot.params['quiz_id'];
-    this.quizService.findAllQuizAnswersByQuizId(1).subscribe((data: QuizAnswer[]) => {
+    this.quiz_id = +this.route.snapshot.params['id'];
+    this.quizService.findAllQuizAnswersByQuizId(this.quiz_id).subscribe((data: QuizAnswer[]) => {
       this.quizAnswers = data;
       this.quizAnswers.forEach((quizAnswer: QuizAnswer) => {
         if (!this.quizQuestions.find(quizQuestion => quizQuestion.id === quizAnswer.quizQuestion.id)) {

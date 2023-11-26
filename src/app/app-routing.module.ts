@@ -18,7 +18,7 @@ import {QuizComponent} from "./components/quiz/quiz.component";
 const routes: Routes = [
   { path: "login", component: LogInComponent },
   { path: "register", component: RegisterComponent},
-  { path: "quiz", component: QuizComponent,},
+  { path: "quiz/:id", component: QuizComponent,},
   { path: "results", component: ResultsComponent, },
   { path : "leaderboard", component : LeaderboardComponent,},
   { path: "createQuiz", component: CreateQuizComponent, },
