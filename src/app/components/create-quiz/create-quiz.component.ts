@@ -59,8 +59,8 @@ export class CreateQuizComponent {
 
     //Send to backend
 
-    console.log(questions);
-    console.log(answers);
+    //console.log(questions);
+    //console.log(answers);
 
     const addedquiz = this.quizService.addQuiz(quiz)
     console.log(addedquiz.subscribe())
