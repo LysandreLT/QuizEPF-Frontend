@@ -3,8 +3,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {QuizService} from "../../services/QuizService";
 import {QuizAnswer} from "../../models/QuizAnswer";
 import {QuizQuestion} from "../../models/QuizQuestion";
-import {QuestionType} from "../../models/QuizAnswerType";
-import {Quiz} from "../../models/Quiz";
 
 
 @Component({
@@ -21,8 +19,9 @@ export class QuizComponent implements OnInit {
   currentQuizQuestion: QuizQuestion
   currentQuizAnswers: QuizAnswer[] = []
   quizIndex: number = 0
-  selectedAnswerId: number;
+  selectedAnswerId: bigint;
   writtenAnswer: string;
+
 
 
   constructor(private route: ActivatedRoute, private quizService: QuizService, private router:Router) {
@@ -44,12 +43,10 @@ export class QuizComponent implements OnInit {
 
   updateCurrentQuizAnswers(): void {
     this.currentQuizAnswers = this.quizAnswers.filter(quizAnswer => quizAnswer.quizQuestion.id === this.currentQuizQuestion.id);
-    console.log(this.currentQuizAnswers)
   }
 
   getNextQuestion(): void {
     if (this.quizIndex < this.quizQuestions.length - 1) {
-
       this.quizIndex++;
       this.currentQuizQuestion = this.quizQuestions[this.quizIndex];
       this.updateCurrentQuizAnswers();
@@ -64,14 +61,20 @@ export class QuizComponent implements OnInit {
     }
   }
 
-  eventClicked(): void {
-    console.log("Selected Answer ID: ", this.selectedAnswerId);
-    console.log("Written Answer: ", this.writtenAnswer);
 
+  eventClicked(): void {
     switch (this.currentQuizQuestion.questionType) {
-      case "SINGLE":
+      case "SINGLECHOICE":
+        this.quizAnswers.forEach(answer => {
+          if (answer.id === this.selectedAnswerId) {
+            answer.isTrue = true;
+          } else if (answer.quizQuestion.id === this.currentQuizQuestion.id) {
+            answer.isTrue = false;
+          }
+        })
         break;
       case "WRITTENANSWER":
+        this.quizAnswers[this.quizAnswers.indexOf(this.currentQuizAnswers[0])].answer = this.writtenAnswer;
         break;
     }
   }
@@ -81,6 +84,4 @@ export class QuizComponent implements OnInit {
       this.router.navigate(['/leaderboard'])
     })
   }
-
-  protected readonly QuestionType = QuestionType;
 }

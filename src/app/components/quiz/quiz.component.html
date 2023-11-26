@@ -8,14 +8,14 @@
             <ul>
                 <li *ngFor="let answer of currentQuizAnswers">
                     <label>
-                        <input type="radio" name="answer" [value]="answer.id" (change)="eventClicked()">
+                        <input type="radio" name="answer" [value]="answer.id" [(ngModel)]="selectedAnswerId" (change)="eventClicked()">
                         {{ answer.answer }}
                     </label>
                 </li>
             </ul>
         </ng-container>
         <ng-container *ngIf="currentQuizQuestion.questionType == 'WRITTENANSWER'">
-            <textarea placeholder="Type your answer..."></textarea>
+            <textarea [(ngModel)]="writtenAnswer" (change)="eventClicked()" placeholder="Entrez votre réponse..."></textarea>
         </ng-container>
     </ng-container>
 </div>
