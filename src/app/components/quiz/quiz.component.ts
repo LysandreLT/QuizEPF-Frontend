@@ -20,6 +20,7 @@ export class QuizComponent implements OnInit {
   currentQuizAnswers: QuizAnswer[] = []
   quizIndex: number = 0
   selectedAnswerId: number;
+  multipleSelectedAnswerId: number[] = [];
   writtenAnswer: string;
 
 
@@ -50,6 +51,7 @@ export class QuizComponent implements OnInit {
       this.quizIndex++;
       this.currentQuizQuestion = this.quizQuestions[this.quizIndex];
       this.updateCurrentQuizAnswers();
+      console.log(this.quizAnswers);
     }
   }
 
@@ -58,6 +60,7 @@ export class QuizComponent implements OnInit {
       this.quizIndex--;
       this.currentQuizQuestion = this.quizQuestions[this.quizIndex];
       this.updateCurrentQuizAnswers();
+      console.log(this.quizAnswers);
     }
   }
 
@@ -66,15 +69,29 @@ export class QuizComponent implements OnInit {
     switch (this.currentQuizQuestion.questionType) {
       case "SINGLECHOICE":
         this.quizAnswers.forEach(answer => {
-          if (answer.id === this.selectedAnswerId) {
-            answer.isTrue = true;
-          } else if (answer.quizQuestion.id === this.currentQuizQuestion.id) {
-            answer.isTrue = false;
+          const correspondingAnswer = this.currentQuizAnswers.find(currentAnswer => currentAnswer.id === answer.id);
+          if (correspondingAnswer) {
+            answer.isTrue = correspondingAnswer.isTrue;
           }
         })
         break;
+
+      case "QCM":
+        this.quizAnswers.forEach(answer => {
+          const correspondingAnswer = this.currentQuizAnswers.find(currentAnswer => currentAnswer.id === answer.id);
+          if (correspondingAnswer) {
+            answer.isTrue = correspondingAnswer.isTrue;
+          }
+        })
+        break;
+
       case "WRITTENANSWER":
-        this.quizAnswers[this.quizAnswers.indexOf(this.currentQuizAnswers[0])].answer = this.writtenAnswer;
+        this.quizAnswers.forEach(answer => {
+          const correspondingAnswer = this.currentQuizAnswers.find(currentAnswer => currentAnswer.id === answer.id);
+          if (correspondingAnswer) {
+            answer.answer = correspondingAnswer.answer;
+          }
+        })
         break;
     }
   }
