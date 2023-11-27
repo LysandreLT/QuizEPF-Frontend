@@ -47,7 +47,7 @@ export class LogInComponent {
                     // No error occurred during login
                     this.authservice.setAuthToken(response.password);
                     console.log('Login success', response.password);
-                    this.router.navigate(['/home']);
+                    this.router.navigate(['']);
                 }
         });
     }

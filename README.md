@@ -29,6 +29,12 @@ Consultez votre classement personnel pour chaque quiz.
 
 À noter que l'option d'authentification a été temporairement désactivée. Cependant, le système d'authentification complet est disponible pour une utilisation future. Actuellement, les fonctionnalités d'inscription et de connexion sont accessibles via les URL "/register" et "/login", mais des erreurs de post et de requête sont présentes. Ces fonctionnalités seront réactivées une fois les problèmes résolus.
 
+Ajout d'un authGuard (désactivé) qui permet de rediriger vers la page login lorsqu'on n'est pas authentifié
+
+**A noter**
+comme il y a deja un user dans la base de donnée, il faut créer 2 user, il y aura une erreur pour le premier le temps que l'index se positionne correctement.
+
+
 ## Guide d'Utilisation
 ### 1. Page d'Accueil :
 
