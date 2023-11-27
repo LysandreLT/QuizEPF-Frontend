@@ -8,14 +8,26 @@
             <ul>
                 <li *ngFor="let answer of currentQuizAnswers">
                     <label>
-                        <input type="radio" name="answer" [value]="answer.id" [(ngModel)]="selectedAnswerId" (change)="eventClicked()">
+                        <input type="radio" name="answer" [value]="answer.id" [(ngModel)]="answer.isTrue" (change)="eventClicked()">
                         {{ answer.answer }}
                     </label>
                 </li>
             </ul>
         </ng-container>
+
+        <ng-container *ngIf="currentQuizQuestion.questionType == 'QCM'">
+            <ul>
+                <li *ngFor="let answer of currentQuizAnswers">
+                    <label>
+                        <input type="checkbox" name="answer" [value]="answer.id" [(ngModel)]="answer.isTrue" (change)="eventClicked()">
+                        {{ answer.answer }}
+                    </label>
+                </li>
+            </ul>
+        </ng-container>
+
         <ng-container *ngIf="currentQuizQuestion.questionType == 'WRITTENANSWER'">
-            <textarea [(ngModel)]="writtenAnswer" (change)="eventClicked()" placeholder="Entrez votre réponse..."></textarea>
+            <textarea *ngIf="currentQuizAnswers.length === 1" [(ngModel)]="currentQuizAnswers[0].answer" (change)="eventClicked()" placeholder="Entrez votre réponse..."></textarea>
         </ng-container>
     </ng-container>
 </div>
