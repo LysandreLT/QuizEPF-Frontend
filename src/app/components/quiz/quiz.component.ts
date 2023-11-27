@@ -81,7 +81,7 @@ export class QuizComponent implements OnInit {
 
   postAnswers(){
     this.quizService.postAnswers(this.quizAnswers, this.quiz_id,1).subscribe( (score)=>{
-      this.router.navigate(['/leaderboard'])
+      this.router.navigate([`/leaderboard/${this.quiz_id}`])
     })
   }
 }

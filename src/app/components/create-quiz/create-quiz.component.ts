@@ -41,7 +41,16 @@ export class CreateQuizComponent {
 
     const answers: QuizAnswer[] = [];
     this.panels.forEach((panel, questionIndex) => {
-      if (panel.showContent === 1) {
+
+      if (panel.showContent === 0) {
+        panel.checkBoxes.forEach(radio => {
+          answers.push({
+            quizQuestion: questions[questionIndex],
+            isTrue: radio.selected,
+            answer: radio.text
+          });
+        });
+      }else if (panel.showContent === 1) {
         panel.checkBoxes.forEach(checkBox => {
           answers.push({
             quizQuestion: questions[questionIndex],
@@ -77,7 +86,23 @@ export class CreateQuizComponent {
           question.id = quest.id;
 
           // Save answers
-          if (panel.showContent === 1) {
+
+          if (panel.showContent === 0) {
+            for (let j = 0; j < panel.radioButtons.length; j++) {
+              const radio = panel.radioButtons[j];
+              const answer: QuizAnswer = {
+                quizQuestion: question,
+                isTrue: radio.selected,
+                answer: radio.text
+              };
+
+              this.quizService.addQuizAnswer(answer).subscribe((ans)=>{
+
+                window.location.reload()
+              })
+            }
+
+          } else if (panel.showContent === 1) {
             for (let j = 0; j < panel.checkBoxes.length; j++) {
               const checkBox = panel.checkBoxes[j];
               const answer: QuizAnswer = {
@@ -108,15 +133,10 @@ export class CreateQuizComponent {
         })
       }
     })
-
-
   }
 
-
-
-
   addPanel() {
-    this.panels.push({ showContent: 0, checkBoxes: [] });
+    this.panels.push({ showContent: 0, checkBoxes: [], radioButtons: [],selectedRadioButton: null });
   }
 
   toggleContent(panel: any, contentNumber: number) {
@@ -127,6 +147,8 @@ export class CreateQuizComponent {
     this.panels.splice(index, 1);
   }
 
+
+
   addCheckBox(panel: any) {
     panel.checkBoxes.push({ checked: false, text: '' });
   }
@@ -135,5 +157,27 @@ export class CreateQuizComponent {
     panel.checkBoxes.splice(index, 1);
   }
 
+  addRadioButton(panel: any) {
 
+    const newOption = { value: true, text: 'New Option', selected: true };
+    // Deselect other radio buttons in the same panel
+    panel.radioButtons.forEach(radioButton => {
+      radioButton.selected = false;
+    });
+
+    // Add the new option to the panel
+    panel.radioButtons.push(newOption);
+  }
+  deleteRadioButton(panel: any, index: number) {
+    panel.radioButtons.splice(index, 1);
+  }
+
+  onRadioButtonChange(panel: any, selectedRadioButton: any) {
+    // Deselect other radio buttons in the same panel
+    panel.radioButtons.forEach(radioButton => {
+      if (radioButton !== selectedRadioButton) {
+        radioButton.selected = false;
+      }
+    });
+  }
 }

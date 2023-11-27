@@ -21,6 +21,13 @@
             </div>
             <button
                     mat-button
+                    [ngClass]="{'active-button': panel.showContent === 0}"
+                    (click)="toggleContent(panel, 0)"
+            >
+                Single option
+            </button>
+            <button
+                    mat-button
                     [ngClass]="{'active-button': panel.showContent === 1}"
                     (click)="toggleContent(panel, 1)"
             >
@@ -33,6 +40,22 @@
             >
                 Réponse libre
             </button>
+        </div>
+
+        <div *ngIf="panel.showContent === 0">
+            <!-- Content for Button 0 -->
+            <div *ngFor="let radioButton of panel.radioButtons; let j = index">
+                <div class="radio-button-input-container">
+                    <mat-radio-group [(ngModel)]="radioButton.selected"  (change)="onRadioButtonChange(panel, radioButton)">
+                        <mat-radio-button [value]="radioButton.value"></mat-radio-button>
+                    </mat-radio-group>
+                    <mat-form-field>
+                        <input matInput placeholder="Réponse" [(ngModel)]="radioButton.text">
+                    </mat-form-field>
+                    <button mat-button color="warn" (click)="deleteRadioButton(panel, j)">Delete</button>
+                </div>
+            </div>
+            <button mat-button (click)="addRadioButton(panel)">Ajouter Réponse</button>
         </div>
 
         <div *ngIf="panel.showContent === 1">
@@ -49,6 +72,7 @@
             <button mat-button (click)="addCheckBox(panel)">Ajouter Réponse</button>
         </div>
 
+
         <div *ngIf="panel.showContent === 2">
             <!-- Content for Button 2 -->
             <mat-form-field>
@@ -59,7 +83,7 @@
 </mat-accordion>
 </div>
 <div class="create">
-<button mat-raised-button (click)="addPanel()">Ajouter Question</button>
+<button mat-raised-button (click)="addPanel()">Ajouter une Question</button>
     <button mat-raised-button color="primary" (click)="saveQuiz()">Sauvegarder</button>
 </div>
 </div>

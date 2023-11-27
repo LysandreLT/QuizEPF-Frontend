@@ -38,6 +38,7 @@ import {MessagesModule} from "primeng/messages";
 import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
 import { QuizComponent } from './components/quiz/quiz.component';
+import {MatRadioModule} from "@angular/material/radio";
 
 
 
@@ -82,7 +83,8 @@ import { QuizComponent } from './components/quiz/quiz.component';
         MatPaginatorModule,
         MatDialogModule,
         MessagesModule,
-        ToastModule
+        ToastModule,
+        MatRadioModule
     ],
   providers: [{
       provide:ErrorHandler,
