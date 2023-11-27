@@ -19,10 +19,7 @@ export class QuizComponent implements OnInit {
   currentQuizQuestion: QuizQuestion
   currentQuizAnswers: QuizAnswer[] = []
   quizIndex: number = 0
-  selectedAnswerId: number;
-  multipleSelectedAnswerId: number[] = [];
-  writtenAnswer: string;
-
+  selectedAnswerId: number = 0;
 
 
   constructor(private route: ActivatedRoute, private quizService: QuizService, private router:Router) {
@@ -44,6 +41,12 @@ export class QuizComponent implements OnInit {
 
   updateCurrentQuizAnswers(): void {
     this.currentQuizAnswers = this.quizAnswers.filter(quizAnswer => quizAnswer.quizQuestion.id === this.currentQuizQuestion.id);
+    if (this.currentQuizQuestion.questionType === "SINGLECHOICE") {
+      const selected = this.currentQuizAnswers.find(answer => answer.isTrue);
+      if (selected) {
+        this.selectedAnswerId = selected.id;
+      }
+    }
   }
 
   getNextQuestion(): void {
@@ -51,7 +54,6 @@ export class QuizComponent implements OnInit {
       this.quizIndex++;
       this.currentQuizQuestion = this.quizQuestions[this.quizIndex];
       this.updateCurrentQuizAnswers();
-      console.log(this.quizAnswers);
     }
   }
 
@@ -60,7 +62,6 @@ export class QuizComponent implements OnInit {
       this.quizIndex--;
       this.currentQuizQuestion = this.quizQuestions[this.quizIndex];
       this.updateCurrentQuizAnswers();
-      console.log(this.quizAnswers);
     }
   }
 
@@ -69,9 +70,11 @@ export class QuizComponent implements OnInit {
     switch (this.currentQuizQuestion.questionType) {
       case "SINGLECHOICE":
         this.quizAnswers.forEach(answer => {
-          const correspondingAnswer = this.currentQuizAnswers.find(currentAnswer => currentAnswer.id === answer.id);
-          if (correspondingAnswer) {
-            answer.isTrue = correspondingAnswer.isTrue;
+          if (answer.id == this.selectedAnswerId) {
+            answer.isTrue = true;
+          }
+          else if (answer.quizQuestion.questionType === "SINGLECHOICE" && answer.quizQuestion.id === this.currentQuizQuestion.id) {
+            answer.isTrue = false;
           }
         })
         break;
@@ -97,7 +100,7 @@ export class QuizComponent implements OnInit {
   }
 
   postAnswers(){
-    this.quizService.postAnswers(this.quizAnswers, this.quiz_id,1).subscribe( (score)=>{
+      this.quizService.postAnswers(this.quizAnswers, this.quiz_id,1).subscribe( (score)=>{
       this.router.navigate([`/leaderboard/${this.quiz_id}`])
     })
   }
