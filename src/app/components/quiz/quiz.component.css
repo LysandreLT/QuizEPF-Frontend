@@ -1,10 +1,26 @@
 .quiz-container {
-    max-width: 600px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:100px
+}
+.display-flex{
+    display:flex;
+}
+.justify-content-center{
+
+    justify-content: center;
+}
+.mat-mdc-raised-button {
+    background-color: #a9a9a9;
+}
+
+
+
+
+
+.block{
+    display: block;
 }
 
 ul {
@@ -21,4 +37,16 @@ button {
     padding: 8px 16px;
     font-size: 16px;
     cursor: pointer;
+    /*width: 150px;*/
+    width: 200px;
+
+
+    .quiz-previous-next{
+        width: 150px
+    }
+
+    .finish-quiz {
+        width: 200px;
+        background: #a9a9a9;
+    }
 }
